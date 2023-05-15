@@ -1,7 +1,7 @@
 import java.io.Serializable;
-import java.util.Date
+import java.util.Date;
 
-public class Conductor implements Serrializable{
+public class Conductor implements Serializable{
 	
 	private int numEmpleado;
 	private String nombre;
@@ -32,7 +32,7 @@ public class Conductor implements Serrializable{
 		//Constructor todos atributos
 		this.numEmpleado = numEmpleado;
 		this.nombre = nombre;
-		this.pellidoPaterno = apellidPaterno;
+		this.apellidoPaterno = apellidoPaterno;
 		this.apellidoMaterno = apellidoMaterno;
 		this.birthday = birthday;
 		this.fechaContrato = fechaContrato; 
