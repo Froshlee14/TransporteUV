@@ -1,6 +1,8 @@
+package modelo;
+
 import java.io.Serializable;
 
-public class Ruta implements Serilizable {
+public class Ruta implements Serializable {
 	
 	private int numRuta;
 	private String descripcion;

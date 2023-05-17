@@ -1,3 +1,5 @@
+package modelo;
+
 import java.io.Serializable;
 
 public class Autobus implements Serializable{
@@ -16,7 +18,7 @@ public class Autobus implements Serializable{
 				int numUnidad,
 				String numSerie,
 				int idFabricante,
-				int yearFabricante,
+				int yearFabricacion,
 				int capacidad
 			) {
 		

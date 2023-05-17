@@ -1,3 +1,5 @@
+package modelo;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -7,8 +9,8 @@ public class Conductor implements Serializable{
 	private String nombre;
 	private String apellidoPaterno;
 	private String apellidoMaterno;
-	private date birthday;
-	private date fechaContrato;
+	private Date birthday;
+	private Date fechaContrato;
 	private String direccion;
 	private String telefono;
 	private int yearsExp;
@@ -22,8 +24,8 @@ public class Conductor implements Serializable{
 				String nombre,
 				String apellidoPaterno,
 				String apellidoMaterno,
-				date birthday,
-				date fechaContrato,
+				Date birthday,
+				Date fechaContrato,
 				String direccion,
 				String telefono,
 				int yearsExp

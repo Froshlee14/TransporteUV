@@ -1,5 +1,6 @@
 package datos;
 
+import modelo.Conductor;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,54 +13,55 @@ public class ConductorDAO{
 	public static final String deleteSQL = "DELETE FRMOM conductor WHERE numEmpleado=?";
 	
 	public List<Conductor> selecionar(){
-		Connection conn = null;
-		Statement state = null;	
-		ResultSet result = null;
+        Connection conn = null;
+        Statement state = null;
+        ResultSet result = null;
 		Conductor con = null;
 		
-		List<Conductor> conductor = new ArrayList<>();
+		List<Conductor> conductores = new ArrayList<>();
 		
 		try {
-			conn = Conexion.getConnection();
-			state = conn.createStatement();
-			result = state.executeQuery(selectSQL);
+            conn = Conexion.getConnection();
+            state = conn.createStatement();
+            result = state.executeQuery(selectSQL);
 			
 			while(result.next()) {
-				String numEmpleado = result.getInt("numEmpleado");
+				int numEmpleado = result.getInt("numEmpleado");
 				String nombre = result.getString("nombre");
 				String apellidoPaterno = result.getString("apellidoPaterno");
 				String apellidoMaterno = result.getString("apellidoMaterno");
-				date birthday = result.getDate("birthday");
-				date fechaContrato = result.getDate("fechaContrato");
+				Date birthday = result.getDate("birthday");
+				Date fechaContrato = result.getDate("fechaContrato");
 				String direccion = result.getString("direccion");
 				String telefono = result.getString("telefono");
 				int yearsExp = result.getInt("yearsExp");
 				
-				con = new Conductor(numEmpleado,nombre.apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp);
-				conductor.add(con);
+				con = new Conductor(numEmpleado,nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp);
+				
+				conductores.add(con);
 			}
-			conexion.close(result);
-			conexion.close(state);
-			conexion.close(conn)
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
 			
-			for(conductor c: conductor) {
-				System.out.printl("Numero de empleado: " + c.getNumEmpleado());
-				System.out.printl("Nombre: " + c.getNombre());
-				System.out.printl("Apellido paterno: " + c.getApellidoPaterno());
-				System.out.printl("Apellido materno: " + c.getApellidoMaterno());
-				System.out.printl("Fecha de nacimiento: " + c.getBirthday());
-				System.out.printl("Fecha de contrato: " + c.getFechaContrato());
-				System.out.printl("Dirección: " + c.getDireccion());
-				System.out.printl("Telefono: " + c.getTelefono());
-				System.out.printl("Años de experiencia: " + c.getYearsExp());
-				System.out.printl("\n");
+			for(Conductor c: conductores) {
+				System.out.println("Numero de empleado: " + c.getNumEmpleado());
+				System.out.println("Nombre: " + c.getNombre());
+				System.out.println("Apellido paterno: " + c.getApellidoPaterno());
+				System.out.println("Apellido materno: " + c.getApellidoMaterno());
+				System.out.println("Fecha de nacimiento: " + c.getBirthday());
+				System.out.println("Fecha de contrato: " + c.getFechaContrato());
+				System.out.println("Dirección: " + c.getDireccion());
+				System.out.println("Telefono: " + c.getTelefono());
+				System.out.println("Años de experiencia: " + c.getYearsExp());
+				System.out.println("\n");
 			}
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		return conductor;
+		return conductores;
 	}
 	
 	public int agregar(Conductor conductor) {
@@ -68,7 +70,7 @@ public class ConductorDAO{
 		int registros = 0;
 		
 		try {
-			conn = Conexion.getConection();
+			conn = Conexion.getConnection();
 			state = conn.prepareStatement(insertSQL);
 			
 			state.setString(1,conductor.getNombre());
@@ -78,17 +80,18 @@ public class ConductorDAO{
 			state.setDate(5,(Date)conductor.getFechaContrato());
 			state.setString(6,conductor.getDireccion());
 			state.setString(7,conductor.getTelefono());
-			state.setString(8,conductor.getTearExp());
+			state.setInt(8,conductor.getYearsExp());
 			
-			registros = state.executeUpdate()
-			if(registros>0)
+			registros = state.executeUpdate();
+			if(registros>0) {
 				System.out.println("Registro agregado correctamente");
+			}
 			
 			Conexion.close(state);
 			Conexion.close(conn);
 			Conductor conductorNvo = new Conductor();
 			
-		} catch(Exeption e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return registros;
@@ -106,13 +109,15 @@ public class ConductorDAO{
 			state.setInt(1,conductor.getNumEmpleado());
 			registros = state.executeUpdate();
 			
-			if(registros>0)
+			if(registros>0) {
 				System.out.println("Registro eliminado");
+			}
 			
 			Conexion.close(state);
 			Conexion.close(conn);
 			Conductor conductorDelete = new Conductor();
-		} catch (Exeption e) {
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return registros;
@@ -124,7 +129,7 @@ public class ConductorDAO{
 		int registros = 0;
 		
 		try {
-			conn = Conexion.getConection();
+			conn = Conexion.getConnection();
 			state = conn.prepareStatement(updateSQL);
 			
 			state.setString(1,conductor.getNombre());
@@ -134,9 +139,9 @@ public class ConductorDAO{
 			state.setDate(5,(Date)conductor.getFechaContrato());
 			state.setString(6,conductor.getDireccion());
 			state.setString(7,conductor.getTelefono());
-			state.setString(8,conductor.getTearExp());
+			state.setInt(8,conductor.getYearsExp());
 			
-			registros = state.executeUpdate()
+			registros = state.executeUpdate();
 			if(registros>0)
 				System.out.println("Registro actualizado");
 			
@@ -144,7 +149,7 @@ public class ConductorDAO{
 			Conexion.close(conn);
 			Conductor conductorMod = new Conductor();
 			
-		} catch(SQLExeption e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return registros;

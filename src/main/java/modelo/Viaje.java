@@ -1,6 +1,8 @@
+package modelo;
+
 import java.io.Serializable;
 
-public class Viaje implements Serilizable {
+public class Viaje implements Serializable {
 	
 	private int numViaje;
 	private String direccion;
@@ -14,8 +16,8 @@ public class Viaje implements Serilizable {
 	public Viaje(
 				int numViaje,
 				String direccion,
-				Time horaPartida,
-				Time horaLlegada
+				String horaPartida,
+				String horaLlegada
 			) {
 		
 		this.numViaje = numViaje;

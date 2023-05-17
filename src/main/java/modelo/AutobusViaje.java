@@ -1,6 +1,8 @@
+package modelo;
+
 import java.io.Serializable;
 
-public class AutobusViaje implements Serilizable {
+public class AutobusViaje implements Serializable {
 	
 	private int numUnidad;
 	private int numViaje;
