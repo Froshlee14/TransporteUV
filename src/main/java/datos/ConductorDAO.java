@@ -1,16 +1,17 @@
 package datos;
 
-import modelo.Conductor;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import modelo.Conductor;
 
 public class ConductorDAO{
 	
 	public static final String selectSQL = "SELECT * FROM coductor";
 	public static final String insertSQL = "INSERT INTO conductor (nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp) VALUES (?,?,?,?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE conductor SET nombre=?,apellidoPaterno=?,apellidoMaterno=?,birthday=?,fechaContrato=?,direccion=?,telefono=?,yearsExp=? WHERE numEmpleado=?";
-	public static final String deleteSQL = "DELETE FRMOM conductor WHERE numEmpleado=?";
+	public static final String deleteSQL = "DELETE FROM conductor WHERE numEmpleado=?";
 	
 	public List<Conductor> selecionar(){
         Connection conn = null;
@@ -37,7 +38,6 @@ public class ConductorDAO{
 				int yearsExp = result.getInt("yearsExp");
 				
 				con = new Conductor(numEmpleado,nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp);
-				
 				conductores.add(con);
 			}
 			Conexion.close(result);
@@ -97,6 +97,39 @@ public class ConductorDAO{
 		return registros;
 	}
 	
+	public int modificar(Conductor conductor) {
+		Connection conn = null;
+		PreparedStatement state = null;
+		int registros = 0;
+		
+		try {
+			conn = Conexion.getConnection();
+			state = conn.prepareStatement(updateSQL);
+			
+			state.setString(1,conductor.getNombre());
+			state.setString(2,conductor.getApellidoPaterno());
+			state.setString(3,conductor.getApellidoMaterno());
+			state.setDate(4,(Date)conductor.getBirthday());
+			state.setDate(5,(Date)conductor.getFechaContrato());
+			state.setString(6,conductor.getDireccion());
+			state.setString(7,conductor.getTelefono());
+			state.setInt(8,conductor.getYearsExp());
+			state.setInt(9,conductor.getNumEmpleado());
+			
+			registros = state.executeUpdate();
+			if(registros>0)
+				System.out.println("Registro actualizado");
+			
+			Conexion.close(state);
+			Conexion.close(conn);
+			Conductor conductorMod = new Conductor();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return registros;
+	}
+	
 	public int borrar(Conductor conductor) {
 		Connection conn = null;
 		PreparedStatement state = null;
@@ -118,38 +151,6 @@ public class ConductorDAO{
 			Conductor conductorDelete = new Conductor();
 			
 		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return registros;
-	}
-	
-	public int modificar(Conductor conductor) {
-		Connection conn = null;
-		PreparedStatement state = null;
-		int registros = 0;
-		
-		try {
-			conn = Conexion.getConnection();
-			state = conn.prepareStatement(updateSQL);
-			
-			state.setString(1,conductor.getNombre());
-			state.setString(2,conductor.getApellidoPaterno());
-			state.setString(3,conductor.getApellidoMaterno());
-			state.setDate(4,(Date)conductor.getBirthday());
-			state.setDate(5,(Date)conductor.getFechaContrato());
-			state.setString(6,conductor.getDireccion());
-			state.setString(7,conductor.getTelefono());
-			state.setInt(8,conductor.getYearsExp());
-			
-			registros = state.executeUpdate();
-			if(registros>0)
-				System.out.println("Registro actualizado");
-			
-			Conexion.close(state);
-			Conexion.close(conn);
-			Conductor conductorMod = new Conductor();
-			
-		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return registros;

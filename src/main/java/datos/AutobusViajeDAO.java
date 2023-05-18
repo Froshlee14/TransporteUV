@@ -4,22 +4,22 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.Autobus;
+import modelo.AutobusViaje;
 
-public class AutobusDAO {
+public class AutobusViajeDAO {
 	
-	public static final String selectSQL = "SELECT * FROM autobus";
-	public static final String insertSQL = "INSERT INTO autobus (numSerie,idFabricante,yearFabricacion,capacidad) VALUES (?,?,?,?,?)";
-	public static final String updateSQL = "UPDATE autobus SET numSerie=?,idFabricante=?,yearFabricacion=?,capacidad=? WHERE numUnidad=?";
-	public static final String deleteSQL = "DELETE FROM autobus WHERE numUnidad=?";
+	public static final String selectSQL = "SELECT * FROM autobusViaje";
+	public static final String insertSQL = "INSERT INTO autobusViaje (numUnidad,numViaje) VALUES (?,?)";
+	public static final String updateSQL = "UPDATE autobusViaje SET numViaje=?, WHERE numUnidad=?";
+	public static final String deleteSQL = "DELETE FROM autobusViaje WHERE numUnidad=?";
 	
-	public List<Autobus> selecionar(){
+	public List<AutobusViaje> selecionar(){
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;
-		Autobus con = null;
+		AutobusViaje con = null;
 		
-		List<Autobus> autobuses = new ArrayList<>();
+		List<AutobusViaje> autobusViajes = new ArrayList<>();
 		
 		try {
             conn = Conexion.getConnection();
@@ -28,24 +28,18 @@ public class AutobusDAO {
 			
 			while(result.next()) {
 				int numUnidad = result.getInt("numUnidad");
-				String numSerie = result.getString("numSerie");
-				int idFabricante = result.getInt("idFabricante");
-				int yearFabricacion = result.getInt("yearFabricacion");
-				int capacidad = result.getInt("capacidad");
+				int numRuta = result.getInt("numRuta");
 				
-				con = new Autobus(numUnidad,numSerie,idFabricante,yearFabricacion,capacidad);
-				autobuses.add(con);
+				con = new AutobusViaje(numUnidad,numRuta);
+				autobusViajes.add(con);
 			}
 			Conexion.close(result);
 			Conexion.close(state);
 			Conexion.close(conn);
 			
-			for(Autobus a: autobuses) {
+			for(AutobusViaje a: autobusViajes) {
 				System.out.println("Numero de unidad: " + a.getNumUnidad());
-				System.out.println("Numero de serie: " + a.getNumSerie());
-				System.out.println("ID de fabricante: " + a.getIdFabricante());
-				System.out.println("Año de fabricacion: " + a.getYearFabricacion());
-				System.out.println("Capacidad: " + a.getCapacidad());
+				System.out.println("Numero de viaje: " + a.getNumViaje());
 				System.out.println("\n");
 			}
 			
@@ -53,10 +47,10 @@ public class AutobusDAO {
 			e.printStackTrace();
 		}
 		
-		return autobuses;
+		return autobusViajes;
 	}
 	
-	public int agregar(Autobus autobus) {
+	public int agregar(AutobusViaje autobusViaje) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -65,10 +59,8 @@ public class AutobusDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(insertSQL);
 			
-			state.setString(1,autobus.getNumSerie());
-			state.setInt(2,autobus.getIdFabricante());
-			state.setInt(3,autobus.getYearFabricacion());
-			state.setInt(4,autobus.getCapacidad());
+			state.setInt(1,autobusViaje.getNumUnidad());
+			state.setInt(2,autobusViaje.getNumViaje());
 			
 			registros = state.executeUpdate();
 			if(registros>0) {
@@ -77,7 +69,7 @@ public class AutobusDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Autobus autobusrNvo = new Autobus();
+			AutobusViaje autobusViajeNvo = new AutobusViaje();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -85,7 +77,7 @@ public class AutobusDAO {
 		return registros;
 	}
 	
-	public int modificar(Autobus autobus) {
+	public int modificar(AutobusViaje autobusViaje) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -94,11 +86,8 @@ public class AutobusDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(updateSQL);
 			
-			state.setString(1,autobus.getNumSerie());
-			state.setInt(2,autobus.getIdFabricante());
-			state.setInt(3,autobus.getYearFabricacion());
-			state.setInt(4,autobus.getCapacidad());
-			state.setInt(5,autobus.getNumUnidad());
+			state.setInt(1,autobusViaje.getNumViaje());
+			state.setInt(2,autobusViaje.getNumUnidad());
 			
 			registros = state.executeUpdate();
 			if(registros>0)
@@ -106,7 +95,7 @@ public class AutobusDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Autobus autobusMod = new Autobus();
+			AutobusViaje autobusRutaMod = new AutobusViaje();
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -114,7 +103,7 @@ public class AutobusDAO {
 		return registros;
 	}
 	
-	public int borrar(Autobus autobus) {
+	public int borrar(AutobusViaje autobusViaje) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -123,7 +112,7 @@ public class AutobusDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,autobus.getNumUnidad());
+			state.setInt(1,autobusViaje.getNumUnidad());
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
@@ -132,7 +121,7 @@ public class AutobusDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Autobus autobusDelete = new Autobus();
+			AutobusViaje autobusViajeDelete = new AutobusViaje();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
