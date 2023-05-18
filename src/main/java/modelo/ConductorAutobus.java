@@ -26,4 +26,12 @@ public class ConductorAutobus implements Serializable{
 		this.numEmpleado = num;
 	}
 	
+	public int getNumUnidad() {
+		return numUnidad;
+	}
+	
+	public void setNumUnidad(int num) {
+		this.numUnidad = num;
+	}
+	
 }
