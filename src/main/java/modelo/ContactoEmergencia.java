@@ -84,5 +84,13 @@ public class ContactoEmergencia implements Serializable {
     public void setTelefono(String tel) {
         this.telefono = tel;
     }
+    
+    public int getNumEmpleado() {
+        return numEmpleado;
+    }
+
+    public void setNumEmpleado(int num) {
+        this.numEmpleado = num;
+    }
 
 }
