@@ -42,7 +42,7 @@ public class Ruta implements Serializable {
 		this.descripcion = desc;
 	}
 	
-	public String getDestinoIncial() {
+	public String getDestinoInicial() {
 		return destinoInicial;
 	}
 	
