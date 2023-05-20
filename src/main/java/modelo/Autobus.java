@@ -14,6 +14,10 @@ public class Autobus implements Serializable{
 		//Constructor vacio
 	}
 	
+	public Autobus(int numUnidad) {
+		this.numUnidad = numUnidad;
+	}
+	
 	public Autobus(
 				int numUnidad,
 				String numSerie,
