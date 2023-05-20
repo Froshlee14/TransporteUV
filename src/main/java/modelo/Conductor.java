@@ -19,6 +19,11 @@ public class Conductor implements Serializable{
 		//Constructor vacio
 	}
 	
+	public Conductor(int numEmpleado) {
+		this.numEmpleado = numEmpleado;
+	
+	}
+	
 	public Conductor(
 				int numEmpleado,
 				String nombre,
