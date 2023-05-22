@@ -9,7 +9,9 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.*;
+import java.util.Date;
 import java.util.logging.*;
+import java.text.SimpleDateFormat;
 
 import datos.Conexion;
 import modelo.Autobus;
@@ -27,8 +29,11 @@ public class ServletConductor {
         if (opc.equals("list")) {
         	ConductorDAO condao = new ConductorDAO();
             List<Conductor> lista = condao.selecionar();
+            //if (lista.isEmpty()) {
+            //	System.out.println("Esta vacio, vez? ");
+            //}
             rq.setAttribute("lista",lista);
-            rq.getRequestDispatcher("vistas/clientes/index.jsp").forward(rq, rp);
+            rq.getRequestDispatcher("empleadoIndex.jsp").forward(rq, rp);
         }
 
         else if (opc.equals("mostrar")) {
@@ -57,7 +62,7 @@ public class ServletConductor {
                 }
                 rq.setAttribute("conductor", auto);
 
-                rq.getRequestDispatcher("vistas/clientes/modificar.jsp").forward(rq, rp);
+                rq.getRequestDispatcher("empleadoIndex.jsp").forward(rq, rp);
                
             } catch (SQLException ex) {
                 System.out.println("Error en SQL " + ex.getMessage());
@@ -83,8 +88,17 @@ public class ServletConductor {
             String nombre = rq.getParameter("nombre");
             String apellidoPaterno = rq.getParameter("apellidoPaterno");
             String apellidoMaterno = rq.getParameter("apellidoMaterno");
-            Date birthday = rq.getParameter("birthday");
-            Date fechaContrato = rq.getParameter("fechaContrato");
+            
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date birthday = null;
+            Date fechaContrato = null;
+            try {
+                birthday = inputFormat.parse(rq.getParameter("birthday"));
+                fechaContrato = inputFormat.parse(rq.getParameter("fechaContrato"));
+            } catch (ParseException e) {
+                System.out.println("Conversion incorrecta");
+            }
+            
             String direccion = rq.getParameter("direccion");
             String telefono = rq.getParameter("telefono");
             int yearsExp = Integer.parseInt(rq.getParameter("yearsExp"));
