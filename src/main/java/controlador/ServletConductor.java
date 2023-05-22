@@ -1,47 +1,50 @@
 package controlador;
 
-import javax.annotation.Resource;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 import javax.servlet.*;
-import javax.sql.DataSource;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.*;
 import java.util.Date;
-import java.util.logging.*;
 import java.text.SimpleDateFormat;
 
 import datos.Conexion;
-import modelo.Autobus;
 import modelo.Conductor;
-import datos.AutobusDAO;
 import datos.ConductorDAO;
 
 @WebServlet(name = "ServletConductor", urlPatterns = {"/ServletConductor"})
 
-public class ServletConductor {
-	
+public class ServletConductor extends HttpServlet{
+	private static final long serialVersionUID = 1L;
+
+	@Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rp) throws IOException, ServletException {
         String opc = (rq.getParameter("opc") != null) ? rq.getParameter("opc") : "list";
 
         if (opc.equals("list")) {
         	ConductorDAO condao = new ConductorDAO();
             List<Conductor> lista = condao.selecionar();
-            //if (lista.isEmpty()) {
-            //	System.out.println("Esta vacio, vez? ");
-            //}
+            if (lista.isEmpty()) {
+            	System.out.println("Esta vacio, vez? ");
+            }
+            else {
+            	System.out.println("Aqui hay datos ");
+            }
+            System.out.println("Hola ");
             rq.setAttribute("lista",lista);
-            rq.getRequestDispatcher("empleadoIndex.jsp").forward(rq, rp);
+            rq.getRequestDispatcher("/empleadoIndex.jsp").forward(rq, rp);
         }
 
         else if (opc.equals("mostrar")) {
-            Conexion con = new Conexion();
-            Connection c = con.getConnection();
+            //Conexion con = new Conexion();
+            Connection c = Conexion.getConnection();
             PreparedStatement ps;
             ResultSet rs;
+            
             int numUnidad = Integer.parseInt(rq.getParameter(("numUnidad")));
+            
             try {
                 String updateSql = "SELECT * FROM conductor WHERE numEmpleado = ? ";
                 ps = c.prepareStatement(updateSql);
@@ -75,10 +78,11 @@ public class ServletConductor {
             Conductor conductor = new Conductor(numEmpleado);
             ConductorDAO condao = new ConductorDAO();
             condao.borrar(conductor);
-            rp.sendRedirect("ServletAutobus");
+            rp.sendRedirect("ServletConductor");
         }
     }
-    
+	
+    @Override
     protected void doPost(HttpServletRequest rq, HttpServletResponse rp) throws IOException {
         String op;
         op=(String)rq.getSession().getAttribute("op");
