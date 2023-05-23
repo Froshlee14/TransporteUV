@@ -8,7 +8,7 @@ import modelo.Conductor;
 
 public class ConductorDAO{
 	
-	public static final String selectSQL = "SELECT * FROM coductor";
+	public static final String selectSQL = "SELECT * FROM conductor";
 	public static final String insertSQL = "INSERT INTO conductor (nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp) VALUES (?,?,?,?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE conductor SET nombre=?,apellidoPaterno=?,apellidoMaterno=?,birthday=?,fechaContrato=?,direccion=?,telefono=?,yearsExp=? WHERE numEmpleado=?";
 	public static final String deleteSQL = "DELETE FROM conductor WHERE numEmpleado=?";
@@ -18,6 +18,8 @@ public class ConductorDAO{
         Statement state = null;
         ResultSet result = null;
 		Conductor con = null;
+		
+	    System.out.println("Hola ");
 		
 		List<Conductor> conductores = new ArrayList<>();
 		
@@ -43,19 +45,6 @@ public class ConductorDAO{
 			Conexion.close(result);
 			Conexion.close(state);
 			Conexion.close(conn);
-			
-			for(Conductor c: conductores) {
-				System.out.println("Numero de empleado: " + c.getNumEmpleado());
-				System.out.println("Nombre: " + c.getNombre());
-				System.out.println("Apellido paterno: " + c.getApellidoPaterno());
-				System.out.println("Apellido materno: " + c.getApellidoMaterno());
-				System.out.println("Fecha de nacimiento: " + c.getBirthday());
-				System.out.println("Fecha de contrato: " + c.getFechaContrato());
-				System.out.println("Dirección: " + c.getDireccion());
-				System.out.println("Telefono: " + c.getTelefono());
-				System.out.println("Años de experiencia: " + c.getYearsExp());
-				System.out.println("\n");
-			}
 			
 		} catch(Exception e) {
 			e.printStackTrace();
