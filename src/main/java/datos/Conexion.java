@@ -13,7 +13,7 @@ public class Conexion {
 
         try {
             Class.forName(driver);
-            // System.out.println("conexion establecida");
+            System.out.println("conexion establecida");
             return DriverManager.getConnection(server, user, pswd);
         } catch (SQLException ex) {
             System.out.println("Error al intentar conectarse a la BD" + server);
