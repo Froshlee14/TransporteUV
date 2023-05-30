@@ -20,8 +20,8 @@ public class ServletConductor extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	@Override
-    protected void doGet(HttpServletRequest rq, HttpServletResponse rp) throws IOException, ServletException {
-        String opc = (rq.getParameter("opc") != null) ? rq.getParameter("opc") : "list";
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String opc = (request.getParameter("opc") != null) ? request.getParameter("opc") : "list";
 
         if (opc.equals("list")) {
         	ConductorDAO condao = new ConductorDAO();
@@ -33,8 +33,10 @@ public class ServletConductor extends HttpServlet{
             	System.out.println("Aqui hay datos ");
             }
             System.out.println("Hola ");
-            rq.setAttribute("lista",lista);
-            rq.getRequestDispatcher("/empleadoIndex.jsp").forward(rq, rp);
+            
+            request.setAttribute("lista",lista);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("empleadoIndex.jsp");
+            dispatcher.forward(request, response);
         }
 
         else if (opc.equals("mostrar")) {
@@ -43,7 +45,7 @@ public class ServletConductor extends HttpServlet{
             PreparedStatement ps;
             ResultSet rs;
             
-            int numUnidad = Integer.parseInt(rq.getParameter(("numUnidad")));
+            int numUnidad = Integer.parseInt(request.getParameter(("numUnidad")));
             
             try {
                 String updateSql = "SELECT * FROM conductor WHERE numEmpleado = ? ";
@@ -63,9 +65,10 @@ public class ServletConductor extends HttpServlet{
                     auto.setTelefono(rs.getString("telefono"));
                     auto.setYearsExp(rs.getInt("yearsExp"));
                 }
-                rq.setAttribute("conductor", auto);
-
-                rq.getRequestDispatcher("empleadoIndex.jsp").forward(rq, rp);
+                
+                request.setAttribute("conductor", auto);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("empleadoIndex.jsp");
+                dispatcher.forward(request, response);
                
             } catch (SQLException ex) {
                 System.out.println("Error en SQL " + ex.getMessage());
@@ -74,43 +77,45 @@ public class ServletConductor extends HttpServlet{
       
         else if (opc.equals("eliminar")) {
 
-            int numEmpleado = Integer.parseInt(rq.getParameter("numUnidad"));
+            int numEmpleado = Integer.parseInt(request.getParameter("numUnidad"));
             Conductor conductor = new Conductor(numEmpleado);
-            ConductorDAO condao = new ConductorDAO();
+            ConductorDAO condao = new ConductorDAO(); 
             condao.borrar(conductor);
-            rp.sendRedirect("ServletConductor");
+            
+            response.sendRedirect("ServletConductor");
         }
     }
 	
     @Override
-    protected void doPost(HttpServletRequest rq, HttpServletResponse rp) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String op;
-        op=(String)rq.getSession().getAttribute("op");
+        op=(String)request.getSession().getAttribute("op");
        if (op.equals("nuevo")) {
 
-            int numEmpleado = Integer.parseInt(rq.getParameter("numEmpleado"));
-            String nombre = rq.getParameter("nombre");
-            String apellidoPaterno = rq.getParameter("apellidoPaterno");
-            String apellidoMaterno = rq.getParameter("apellidoMaterno");
+            int numEmpleado = Integer.parseInt(request.getParameter("numEmpleado"));
+            String nombre = request.getParameter("nombre");
+            String apellidoPaterno = request.getParameter("apellidoPaterno");
+            String apellidoMaterno = request.getParameter("apellidoMaterno");
             
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date birthday = null;
             Date fechaContrato = null;
             try {
-                birthday = inputFormat.parse(rq.getParameter("birthday"));
-                fechaContrato = inputFormat.parse(rq.getParameter("fechaContrato"));
+                birthday = inputFormat.parse(request.getParameter("birthday"));
+                fechaContrato = inputFormat.parse(request.getParameter("fechaContrato"));
             } catch (ParseException e) {
                 System.out.println("Conversion incorrecta");
             }
             
-            String direccion = rq.getParameter("direccion");
-            String telefono = rq.getParameter("telefono");
-            int yearsExp = Integer.parseInt(rq.getParameter("yearsExp"));
+            String direccion = request.getParameter("direccion");
+            String telefono = request.getParameter("telefono");
+            int yearsExp = Integer.parseInt(request.getParameter("yearsExp"));
 
             Conductor conductor = new Conductor(numEmpleado, nombre, apellidoPaterno, apellidoMaterno, birthday, fechaContrato, direccion, telefono, yearsExp);
             ConductorDAO condao = new ConductorDAO();
             condao.agregar(conductor);
-            rp.sendRedirect("/ServletConductor");
+            
+            response.sendRedirect("/ServletConductor");
         }
        
     }
