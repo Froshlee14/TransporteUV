@@ -11,7 +11,9 @@
 	
 	<body>
 	
-		<table align="center" bgcolor="#f4a460" style="width: 100%">
+	<jsp:useBean id="conductores" class="modelo.Conductor" scope="request"/>
+
+		<table width="100%">
 		
 		<thead>
             <tr>
@@ -21,8 +23,10 @@
                 <th>Apellido Materno </th>
             </tr>
       	</thead>
-		
-		<%
+      	
+      	<%
+
+  		@SuppressWarnings("unchecked")
 		List<Conductor> lista = (List<Conductor>) request.getAttribute("lista");
         if (lista != null){
         	for (Conductor conductor : lista){

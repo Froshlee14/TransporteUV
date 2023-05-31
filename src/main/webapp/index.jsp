@@ -9,16 +9,19 @@
 	
 	<body>
 	
-		<h2>Apoco sí tilin</h2>
+		<h2>Bienvenido al sistema de TransporteUV</h2>
 		
-		<form action="empleadoIndex.jsp" method="post">
-        	<input type="submit" name="loginEmpleado" value="Empleado">
-    	</form>
+		<p> Selecciones su tipo de usuario: </p>
+		
+		<div>
+			<form action="ServletConductor" method="get">
+        		<input type="submit" name="loginEmpleado" value="Soy Empleado">
+    		</form>
     	
-    	<form action="/adminIndex.jsp" method="post">
-        	<input type="submit" name="loginEmpleado" value="Administrador">
-    	</form>
-    	
+    		<form action="/loginAdmin.jsp" method="post">
+        		<input type="submit" name="loginEmpleado" value="Soy Administrador">
+    		</form>
+    	</div>
 	</body>
 	
 </html>
