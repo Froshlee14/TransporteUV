@@ -6,7 +6,7 @@ import modelo.Usuario;
 
 public class UsuarioDAO {
 	
-	public static final String selectSQL = "SELECT (passwrd,numEmpleado,rol) FROM usuarios WHERE usuario=?";
+	public static final String selectSQL = "SELECT passwrd,numEmpleado,rol FROM usuarios WHERE usuario=?";
 	public static final String insertSQL = "INSERT INTO usuarios (usuario,passwrd,numEmpleado,rol) VALUES (?,?,?,?)";
 	public static final String updateSQL = "UPDATE usuarios SET usuario=?,passwrd=?,numEmpleado=?,rol=? WHERE usuario=?";
 	public static final String deleteSQL = "DELETE FROM usuarios WHERE usuario=?";
