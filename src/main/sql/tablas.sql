@@ -81,7 +81,6 @@ CREATE TABLE usuarios(
 	passwrd varchar(6),
 	numEmpleado int,
 	rol varchar(8),
-	FOREIGN KEY (numEmpleado) REFERENCES conductor(numEmpleado) ON DELETE CASCADE,
 	PRIMARY KEY(usuario)
 );
 
@@ -93,10 +92,10 @@ DROP TABLE autobusRuta;
 DROP TABLE autobusViaje;
 DROP TABLE viaje;
 DROP TABLE ruta;
-DROP TABLE fabricante;
 DROP TABLE conductorAutobus;
 DROP TABLE autobus;
 DROP TABLE contactoEmergencia;
-DROP TABLE conductor;
 DROP TABLE usuarios;
+DROP TABLE fabricante;
+DROP TABLE conductor;
 */
