@@ -8,18 +8,19 @@
 	</head>
 	
 	<body>
-	
-		<h2>Bienvenido al sistema de TransporteUV</h2>
-		
-		<p> Selecciones su tipo de usuario: </p>
+
+		<img src="logo.png" width="200px"/>
 		
 		<div>
-			<form action="ServletConductor" method="get">
-        		<input type="submit" name="loginEmpleado" value="Soy Empleado">
-    		</form>
-    	
-    		<form action="/loginAdmin.jsp" method="post">
-        		<input type="submit" name="loginEmpleado" value="Soy Administrador">
+			<form action="/ServletLogin" method="post">
+			
+				<label for="usuario">Usuario:</label><br>
+			    <input type="text" id="usuario" name="loginUsuario"> <br>
+			    
+			    <label for="passwrd">Contraseña:</label><br>
+			    <input type="text" id="passwrd" name="loginPassword"> <br>
+			    
+        		<input type="submit" name="loginBoton" value="Iniciar Sesion">
     		</form>
     	</div>
 	</body>
