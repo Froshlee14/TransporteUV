@@ -19,6 +19,12 @@ public class Usuario implements Serializable{
 		this.rol = rol;
 	}
 
+	public Usuario(String passwrd, int numEmpleado, String rol) {
+		this.passwrd = passwrd;
+		this.numEmpleado = numEmpleado;
+		this.rol = rol;
+	}
+
 	public String getUsuario() {
 		return usuario;
 	}
