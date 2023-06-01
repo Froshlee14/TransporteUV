@@ -7,6 +7,7 @@
 
 	<head>
 		<title>TransporteUV</title>
+		<link rel="stylesheet" href="https://unpkg.com/98.css">
 	</head>
 	
 	<body>
@@ -17,26 +18,37 @@
       		String nomEmpleado = (String) request.getAttribute("nombreEmpleado");
 			Usuario usuario = (Usuario) request.getAttribute("usuario");
         %>
-            <p>Bienvenid@ <%out.print(nomEmpleado); %> </p>
-            <p> ¿Que accion quieres realizar? </p>
-            
-            <form action="ServletActualizarConductor" method="post">
-        		<input type="submit" name="updateData" value="Actualizar mis información">
-    		</form>
-    		
-    		<form action="ServletCambiarPassword" method="post">
-        		<input type="submit" name="updateData" value="Cambiar mi contraseña">
-    		</form>
-    		
-    		<form action="ServletCambiarPassword" method="post">
-        		<input type="submit" name="updateData" value="Ver mis autobuses">
-    		</form>
-    		
-    		<form action="ServletCambiarPassword" method="post">
-        		<input type="submit" name="updateData" value="Ver mis viajes">
-    		</form>
+        <div class="window" style="width: 300px">
+        
+          	<div class="title-bar">
+    			<div class="title-bar-text">indexEmplaedo.jsp</div>
+    			<div class="title-bar-controls">
+     				<button aria-label="Close"></button>
+   				</div>
+  			</div>
 
-    	
+        	<div class="window-body">
+            	<p>Bienvenid@ <%out.print(nomEmpleado); %> </p>
+            	<p> ¿Que accion quieres realizar? </p>
+            
+            	<form action="ServletActualizarConductor" method="post">
+        			<input type="submit" name="updateData" value="Actualizar mi información">
+    			</form>
+    		
+    			<form action="ServletCambiarPassword" method="post">
+        			<input type="submit" name="updateData" value="Cambiar mi contraseña">
+    			</form>
+    		
+    			<form action="ServletCambiarPassword" method="post">
+        			<input type="submit" name="updateData" value="Ver mis autobuses">
+    			</form>
+    		
+    			<form action="ServletCambiarPassword" method="post">
+        			<input type="submit" name="updateData" value="Ver mis viajes">
+    			</form>
+			</div>
+			
+    	</div>
 	</body>
 	
 </html>

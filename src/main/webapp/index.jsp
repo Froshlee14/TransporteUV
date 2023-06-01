@@ -5,23 +5,40 @@
 
 	<head>
 		<title>TransporteUV</title>
+		<link rel="stylesheet" href="https://unpkg.com/98.css">
 	</head>
 	
 	<body>
 
-		<img src="logo.png" width="200px"/>
 		
-		<div>
+		
+		<div  class="window" style="width: 250px">
+			<div class="title-bar">
+    			<div class="title-bar-text">index.jsp</div>
+    			<div class="title-bar-controls">
+     				<button aria-label="Close"></button>
+   				</div>
+  			</div>
+  			
+  			<img src="logo2.png" style="width: 100%"/>
+  			
+  			<div class="window-body">
 			<form action="ServletLogin" method="post">
 			
-				<label for="usuario">Usuario:</label><br>
-			    <input type="text" id="usuario" name="inputUsuario"> <br>
+				<div class="field-row-stacked" style="width: 100%">
+					<label for="usuario">Usuario:</label>
+			    	<input id="usuario" type="text" name="inputUsuario"> 
+			    </div>
 			    
-			    <label for="password">Contraseña:</label><br>
-			    <input type="text" id="password" name="inputPassword"> <br>
-			    
+			    <div class="field-row-stacked" style="width: 100%">
+			    	<label for="password">Contraseña:</label>
+			    	<input id="password" type="text" name="inputPassword"> 
+			    </div>
+			    <br>
         		<input type="submit" name="loginBoton" value="Iniciar Sesion">
+        		
     		</form>
+    		</div>
     	</div>
 	</body>
 	
