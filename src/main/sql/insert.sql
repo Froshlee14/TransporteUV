@@ -1,6 +1,6 @@
 INSERT INTO conductor (nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp) VALUES
 	('Juan','García','Pérez','1990-05-10','2018-01-01','Calle Hidalgo #34, Colonia Centro, Veracruz','2285551234',5),
-	('Ana','Torres','Reyes','1992-08-15','2019-07-01','Avenida Juárez #76, Colonia Obrera, Xalapa','2295555678',7),
+	('Ana','Torres','Reyes','1992-08-15','2019-07-01','Avenida Juárez #76, Colonia Obrera, Xalapa','2295555678',7,'anat15'),
 	('Carlos','Martínez','Gómez','1995-04-20','2020-01-01','Calle Miguel Hidalgo #120, Colonia Libertad, Coatzacoalcos','2295559876',1),
 	('Sofía','Torres','García','1997-08-05','2021-04-01','Calle Pino Suárez #22, Colonia Emiliano Zapata, Poza Rica','2295554321',3),
 	('Luis','Hernández','Ortiz','1989-11-22','2019-01-01','Avenida Lerdo de Tejada #45, Colonia Centro, Boca del Río','2285556789',5)
@@ -77,3 +77,12 @@ INSERT INTO autobusRuta (numUnidad,numRuta) VALUES
 	(5,1)
 ;
 select * from autobusRuta;
+
+INSERT INTO usuarios (usuario,passwrd,numEmpleado, rol) VALUES
+	('JuanitoG','juan01',1,'empleado'),
+	('AnaTorre','anit45',2,'empleado'),
+	('CarlosMa','carl05',3,'empleado'),
+	('SofiaTor','sofi45',4,'empleado'),
+	('LuisHern','luis22',5,'empleado'),
+	('Admin','lennon',0,'admin')
+;

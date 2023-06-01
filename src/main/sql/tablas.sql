@@ -76,6 +76,15 @@ CREATE TABLE autobusRuta(
 	FOREIGN KEY (numRuta) REFERENCES ruta(numRuta) ON DELETE CASCADE
 );
 
+CREATE TABLE usuarios(
+	usuario varchar(8),
+	passwrd varchar(6),
+	numEmpleado int,
+	rol varchar(8),
+	FOREIGN KEY (numEmpleado) REFERENCES conductor(numEmpleado) ON DELETE CASCADE,
+	PRIMARY KEY(usuario)
+);
+
 --En caso de ser necesario
 --se borra de forma descendente
 --por las llaves foraneas
@@ -89,4 +98,5 @@ DROP TABLE conductorAutobus;
 DROP TABLE autobus;
 DROP TABLE contactoEmergencia;
 DROP TABLE conductor;
+DROP TABLE usuarios;
 */
