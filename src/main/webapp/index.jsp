@@ -12,13 +12,13 @@
 		<img src="logo.png" width="200px"/>
 		
 		<div>
-			<form action="/ServletLogin" method="post">
+			<form action="ServletLogin" method="post">
 			
 				<label for="usuario">Usuario:</label><br>
-			    <input type="text" id="usuario" name="loginUsuario"> <br>
+			    <input type="text" id="usuario" name="inputUsuario"> <br>
 			    
-			    <label for="passwrd">Contraseña:</label><br>
-			    <input type="text" id="passwrd" name="loginPassword"> <br>
+			    <label for="password">Contraseña:</label><br>
+			    <input type="text" id="password" name="inputPassword"> <br>
 			    
         		<input type="submit" name="loginBoton" value="Iniciar Sesion">
     		</form>
