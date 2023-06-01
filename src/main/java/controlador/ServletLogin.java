@@ -17,14 +17,15 @@ public class ServletLogin extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
       	UsuarioDAO userdao = new UsuarioDAO();
-      	String user = request.getParameter("usuario");
-      	String password = request.getParameter("passwrd").trim();
+      	String user = request.getParameter("inputUsuario");
+      	String password = request.getParameter("inputPassword").trim();
       	
         Usuario usuario = userdao.mostrar(user);
+    	System.out.println("hola");
         
         if (usuario!=null) {
         	if (usuario.getPasswrd().equals(password)) {
-        		
+              	System.out.println(usuario.getNumEmpleado());
         		 request.setAttribute("usuario",usuario);
                 
                 if (usuario.getRol().equals("admin")) {
