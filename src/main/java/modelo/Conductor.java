@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Conductor implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private int numEmpleado;
 	private String nombre;
 	private String apellidoPaterno;
@@ -48,8 +49,8 @@ public class Conductor implements Serializable{
 		this.yearsExp = yearsExp;
 		
 	}
-	
-    public int getNumEmpleado() {
+
+	public int getNumEmpleado() {
         return numEmpleado;
     }
 

@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Conductor;
+import modelo.Usuario;
 
 public class ConductorDAO{
 	
 	public static final String selectSQL = "SELECT * FROM conductor";
+	public static final String selectNombreSQL = "SELECT nombre FROM conductor WHERE numEmpleado=?";
 	public static final String insertSQL = "INSERT INTO conductor (nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp) VALUES (?,?,?,?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE conductor SET nombre=?,apellidoPaterno=?,apellidoMaterno=?,birthday=?,fechaContrato=?,direccion=?,telefono=?,yearsExp=? WHERE numEmpleado=?";
 	public static final String deleteSQL = "DELETE FROM conductor WHERE numEmpleado=?";
@@ -51,6 +53,37 @@ public class ConductorDAO{
 		}
 		
 		return conductores;
+	}
+	
+	public String seleccionarNombre(int us){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+		Conductor conductor = null;
+		String nombre = "Usuario";
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(selectNombreSQL);
+            
+            state.setInt(1,us);
+            
+			result = state.executeQuery();
+			if(result.next()) {
+				System.out.println("Registro encontrado ConductorDAO");
+				nombre = result.getString("nombre");
+				
+			}
+			
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return nombre;
 	}
 	
 	public int agregar(Conductor conductor) {
