@@ -6,7 +6,9 @@ import java.io.*;
 import javax.servlet.*;
 
 import modelo.Usuario;
+import modelo.Conductor;
 import datos.UsuarioDAO;
+import datos.ConductorDAO;
 
 @WebServlet("/ServletLogin")
 
@@ -21,20 +23,26 @@ public class ServletLogin extends HttpServlet{
       	String password = request.getParameter("inputPassword").trim();
       	
         Usuario usuario = userdao.mostrar(user);
-    	System.out.println("hola");
+    	//System.out.println("hola");
         
         if (usuario!=null) {
         	if (usuario.getPasswrd().equals(password)) {
-              	System.out.println(usuario.getNumEmpleado());
+              
         		 request.setAttribute("usuario",usuario);
                 
                 if (usuario.getRol().equals("admin")) {
-                    // Redirigir a la página indexAdmin.jsp
+                    //Si el rol es de admin reedirige al jsp correspondiente
                     RequestDispatcher dispatcher = request.getRequestDispatcher("indexAdmin.jsp");
                     dispatcher.forward(request, response);
                 }
                 else if (usuario.getRol().equals("empleado")) {
-                    // Redirigir a la página indexEmpleado.jsp
+                    //Si se trata de un empleado obtenemos su nombre  para saludarlo en el jsp
+                	
+                	ConductorDAO condao = new ConductorDAO();
+                	String nomEmpleado = condao.seleccionarNombre(usuario.getNumEmpleado());
+                	
+                	request.setAttribute("nombreEmpleado",nomEmpleado);
+                	
                     RequestDispatcher dispatcher = request.getRequestDispatcher("indexEmpleado.jsp");
                     dispatcher.forward(request, response);
                 }
