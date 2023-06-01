@@ -14,11 +14,27 @@
 	<jsp:useBean id="usuarios" class="modelo.Usuario" scope="request"/>
       	
       	<%
-
+      		String nomEmpleado = (String) request.getAttribute("nombreEmpleado");
 			Usuario usuario = (Usuario) request.getAttribute("usuario");
         %>
-            <p>NumEmpleado <%out.print(usuario.getNumEmpleado()); %> </p>
-            <p>Rol <%out.print(usuario.getRol()); %> </p>
+            <p>Bienvenid@ <%out.print(nomEmpleado); %> </p>
+            <p> ¿Que accion quieres realizar? </p>
+            
+            <form action="ServletActualizarConductor" method="post">
+        		<input type="submit" name="updateData" value="Actualizar mis información">
+    		</form>
+    		
+    		<form action="ServletCambiarPassword" method="post">
+        		<input type="submit" name="updateData" value="Cambiar mi contraseña">
+    		</form>
+    		
+    		<form action="ServletCambiarPassword" method="post">
+        		<input type="submit" name="updateData" value="Ver mis autobuses">
+    		</form>
+    		
+    		<form action="ServletCambiarPassword" method="post">
+        		<input type="submit" name="updateData" value="Ver mis viajes">
+    		</form>
 
     	
 	</body>
