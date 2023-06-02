@@ -6,7 +6,6 @@ import java.io.*;
 import javax.servlet.*;
 
 import modelo.Usuario;
-import modelo.Conductor;
 import datos.UsuarioDAO;
 import datos.ConductorDAO;
 

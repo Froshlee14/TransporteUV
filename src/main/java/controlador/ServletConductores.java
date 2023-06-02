@@ -1,25 +1,24 @@
 package controlador;
 
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 import javax.servlet.*;
 import java.util.*;
 
-import modelo.Autobus;
-import datos.AutobusDAO;
+import modelo.Conductor;
+import datos.ConductorDAO;
 
-@WebServlet("/ServletAutobus")
+@WebServlet("/ServletConductores")
 
-public class ServletAutobus  extends HttpServlet{
+public class ServletConductores extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
-	//PETICION GET
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        AutobusDAO autodao = new AutobusDAO();
-        List<Autobus> lista = autodao.selecionar();
+      	ConductorDAO condao = new ConductorDAO();
+        List<Conductor> lista = condao.selecionar();
         if (lista.isEmpty()) {
           	System.out.println("Lista vacia ");
         }
@@ -28,11 +27,8 @@ public class ServletAutobus  extends HttpServlet{
         }
             
         request.setAttribute("lista",lista);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listaConductores.jsp");
         dispatcher.forward(request, response);
-
-      
-
     }
 
 }
