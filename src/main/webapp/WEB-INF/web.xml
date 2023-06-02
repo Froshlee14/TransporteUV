@@ -3,16 +3,5 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  
-  <servlet>
-    <servlet-name>ServletConductor</servlet-name>
-    <servlet-class>transporteUV.ServletConductor</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>ServletConductor</servlet-name>
-    <url-pattern>/ServletConductor</url-pattern>
-</servlet-mapping>
-  
+  <display-name>Archetype Created Web Application</display-name>  
 </web-app>

@@ -12,7 +12,7 @@
 
 		
 		
-		<div  class="window" style="width: 250px">
+		<div  class="window" style="width: 250px; margin: 32px; ">
 			<div class="title-bar">
     			<div class="title-bar-text">index.jsp</div>
     			<div class="title-bar-controls">
@@ -32,7 +32,7 @@
 			    
 			    <div class="field-row-stacked" style="width: 100%">
 			    	<label for="password">Contraseña:</label>
-			    	<input id="password" type="text" name="inputPassword"> 
+			    	<input id="password" type="password" name="inputPassword"> 
 			    </div>
 			    <br>
         		<input type="submit" name="loginBoton" value="Iniciar Sesion">

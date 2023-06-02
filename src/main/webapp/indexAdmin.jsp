@@ -15,7 +15,6 @@
 	<jsp:useBean id="usuarios" class="modelo.Usuario" scope="request"/>
       	
       	<%
-      		String nomEmpleado = (String) request.getAttribute("nombreEmpleado");
 			Usuario usuario = (Usuario) request.getAttribute("usuario");
         %>
         <div class="window" style="width: 300px">
@@ -28,10 +27,14 @@
   			</div>
 
         	<div class="window-body">
-            	<p>Bienvenid@ <%out.print(nomEmpleado); %> </p>
+            	<p>Bienvenido al sistema de administrador </p>
             	<p> ¿Que accion quieres realizar? </p>
+            
+            	<form action="ServletConductores" method="get">
+        			<input type="submit" name="updateData" value="Ver conductores">
+    			</form>
     		
-    			<form action="ServletAutobusLista" method="post">
+    			<form action="ServletCambiarPassword" method="post">
         			<input type="submit" name="updateData" value="Ver autobuses">
     			</form>
     		
@@ -39,10 +42,6 @@
         			<input type="submit" name="updateData" value="Ver viajes">
     			</form>
     			
-            	<form action="ServletActualizarConductor" method="post">
-        			<input type="submit" name="updateData" value="Actualizar información">
-    			</form>
-    		
     			<form action="ServletCambiarPassword" method="post">
         			<input type="submit" name="updateData" value="Cambiar contraseña">
     			</form>
