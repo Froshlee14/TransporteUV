@@ -9,14 +9,14 @@ import modelo.ContactoEmergencia;
 
 public class ContactoEmergenciaDAO {
 	
-	public static final String selectSQL = "SELECT * FROM contactoEmergencia";
+	public static final String selectSQL = "SELECT numContacto,nombre,apellidoPaterno,apellidoMaterno,direccion,telefono FROM contactoEmergencia WHERE numEmpleado=?";
 	public static final String insertSQL = "INSERT INTO contactoEmergencia (nombre,apellidoPaterno,apellidoMaterno,direccion,telefono,numEmpleado) VALUES (?,?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE contactoEmergencia SET nombre=?,apellidoPaterno=?,apellidoMaterno=?,direccion=?,telefono=?,numEmpleado=? WHERE numContacto=?";
 	public static final String deleteSQL = "DELETE FROM contactoEmergencia WHERE numContacto=?";
 	
-	public List<ContactoEmergencia> selecionar(){
+	public List<ContactoEmergencia> selecionar(int numEmpleado){
         Connection conn = null;
-        Statement state = null;
+        PreparedStatement state = null;
         ResultSet result = null;
         ContactoEmergencia conEm = null;
 		
@@ -24,8 +24,11 @@ public class ContactoEmergenciaDAO {
 		
 		try {
             conn = Conexion.getConnection();
-            state = conn.createStatement();
-            result = state.executeQuery(selectSQL);
+            state = conn.prepareStatement(selectSQL);
+            
+            state.setInt(1,numEmpleado);
+            
+			result = state.executeQuery();
 			
 			while(result.next()) {
 				int numContacto = result.getInt("numContacto");
@@ -34,25 +37,13 @@ public class ContactoEmergenciaDAO {
 				String apellidoMaterno = result.getString("apellidoMaterno");
 				String direccion = result.getString("direccion");
 				String telefono = result.getString("telefono");
-				int numEmpleado = result.getInt("numEmpleado");
 				
-				conEm = new ContactoEmergencia(numContacto,nombre,apellidoPaterno,apellidoMaterno,direccion,telefono,numEmpleado);
+				conEm = new ContactoEmergencia(numContacto,nombre,apellidoPaterno,apellidoMaterno,direccion,telefono);
 				contactosEmergencia.add(conEm);
 			}
 			Conexion.close(result);
 			Conexion.close(state);
 			Conexion.close(conn);
-			
-			for(ContactoEmergencia ce: contactosEmergencia) {
-				System.out.println("Numero de contacto: " + ce.getNumContacto());
-				System.out.println("Nombre: " + ce.getNombre());
-				System.out.println("Apellido paterno: " + ce.getApellidoPaterno());
-				System.out.println("Apellido materno: " + ce.getApellidoMaterno());
-				System.out.println("Dirección: " + ce.getDireccion());
-				System.out.println("Telefono: " + ce.getTelefono());
-				System.out.println("Numero de empleado: " + ce.getNumEmpleado());
-				System.out.println("\n");
-			}
 			
 		} catch(Exception e) {
 			e.printStackTrace();

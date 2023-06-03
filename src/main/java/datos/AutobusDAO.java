@@ -9,7 +9,7 @@ import modelo.Autobus;
 public class AutobusDAO {
 	
 	public static final String selectSQL = "SELECT * FROM autobus";
-	public static final String insertSQL = "INSERT INTO autobus (numSerie,idFabricante,yearFabricacion,capacidad) VALUES (?,?,?,?,?)";
+	public static final String insertSQL = "INSERT INTO autobus (numSerie,idFabricante,yearFabricacion,capacidad) VALUES (?,?,?,?)";
 	public static final String updateSQL = "UPDATE autobus SET numSerie=?,idFabricante=?,yearFabricacion=?,capacidad=? WHERE numUnidad=?";
 	public static final String deleteSQL = "DELETE FROM autobus WHERE numUnidad=?";
 	

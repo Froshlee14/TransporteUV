@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Conductor;
-import modelo.Usuario;
 
 public class ConductorDAO{
 	
