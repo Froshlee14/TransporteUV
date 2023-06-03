@@ -25,16 +25,41 @@
 
 		<div class="window-body"  style="margin: 15px;">
 
+			 <div class="field-row" style="margin-bottom: 20px;">
+			 
+			 	<label for="numEmpleado">No.de empleado </label>
+			    <input id="numEmpleado" type="text" name="inputNumEmpleado"> 
+			    
+			    <form action="ServletContactoLista" method="get">
+			    	<input type="hidden" name="inputNumEmpleado" value="<%= request.getParameter("inputNumEmpleado") %>">
+					<input type="submit" name="updateData" value="Modificar datos">
+				</form>
+			    
+			    <form action="ServletContactoLista" method="get">
+			   	 <input type="hidden" name="inputNumEmpleado" value="<%= request.getParameter("inputNumEmpleado") %>">
+					<input type="submit" name="updateData" value="Ver contactos">
+				</form>
+				
+				<form action="ServletConductor" method="get">
+					<input type="hidden" name="inputNumEmpleado" value="<%= request.getParameter("inputNumEmpleado") %>">
+        			<input type="submit" name="updateData" value="Borrar conductor">
+    			</form>
+    			
+			</div>
+
 			<div class="sunken-panel">
 				<table class="interactive">
 
 					<thead>
 						<tr>
-							<th>Numero de empleado</th>
+							<th>No.de empleado</th>
 							<th>Nombre</th>
 							<th>Apellido Paterno</th>
 							<th>Apellido Materno</th>
-							<th>Contactos de emergencia</th>
+							<th>Fecha de nacimiento</th>
+							<th>Fecha de contrato</th>
+							<th>Direccion</th>
+							<th>Telefono</th>
 						</tr>
 					</thead>
 
@@ -49,12 +74,12 @@
 						<td><%out.print(conductor.getNombre());%></td>
 						<td><%out.print(conductor.getApellidoPaterno());%></td>
 						<td><%out.print(conductor.getApellidoMaterno());%></td>
+						<td><%out.print(conductor.getBirthday());%></td>
+						<td><%out.print(conductor.getFechaContrato());%></td>
+						<td><%out.print(conductor.getDireccion());%></td>
+						<td><%out.print(conductor.getTelefono());%></td>
 						<td>
-							<form action="ServletEjemplo" method="POST">
-								<input type="hidden" name="<%=conductor.getNumEmpleado()%>"
-									value="valor2">
-								<button type="submit">Ver contactos</button>
-							</form>
+
 						</td>
 					</tr>
 					<%
@@ -67,15 +92,10 @@
 
 				</table>
 			</div>
-			
-			<p> ¿Que accion desea realizar? <p>
-			
-			 <div class="field-row">
-				<form action="ServletConductor" method="get">
+				
+			 <div class="field-row" style="margin-top: 20px; justify-content: flex-end;">
+				<form action="ServletContactoLista" method="get">
         			<input type="submit" name="updateData" value="Nuevo conductor">
-    			</form>
-    			<form action="ServletConductor" method="get">
-        			<input type="submit" name="updateData" value="Borrar conductor">
     			</form>
 			</div>
 			
