@@ -33,6 +33,7 @@
 
 					<thead>
 						<tr>
+							<th>No. de contacto</th>
 							<th>Nombre</th>
 							<th>Apellido Paterno</th>
 							<th>Apellido Materno</th>
@@ -48,6 +49,7 @@
 						for (ContactoEmergencia contacto : lista) {
 					%>
 					<tr>
+						<td><%out.print(contacto.getNumContacto());%></td>
 						<td><%out.print(contacto.getNombre());%></td>
 						<td><%out.print(contacto.getApellidoPaterno());%></td>
 						<td><%out.print(contacto.getApellidoMaterno());%></td>
@@ -66,15 +68,15 @@
 				</table>
 			</div>
 			
-			<p> ¿Que accion desea realizar? <p>
-			
-			 <div class="field-row">
-
-				<form action="ServletConductor" method="get">
-        			<input type="submit" name="updateData" value="Nuevo contacto">
+			<div class="field-row" style="margin-top: 15px;  justify-content: flex-end;">
+				<form method="get">
+					<label for="usuario">No. de contacto:</label>
+			    	<input id="usuario" type="number" name="numEmpleado" value="">    		
+ 
+ 					<input type="submit" name="updateData" value="Modificar datos">
     			</form>
-    			<form action="ServletConductor" method="get">
-        			<input type="submit" name="updateData" value="Borrar conductor">
+    			<form action="coductorNuevo.jsp">
+					<input type="submit" value="Nuevo contacto">
     			</form>
 			</div>
 			
