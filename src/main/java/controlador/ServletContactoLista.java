@@ -21,7 +21,7 @@ public class ServletContactoLista extends HttpServlet{
 
       	ContactoEmergenciaDAO condao = new ContactoEmergenciaDAO();
       	
-      	int numEmpleado = Integer.parseInt(request.getParameter("inputNumEmpleado"));
+      	int numEmpleado = Integer.parseInt(request.getParameter("numEmpleado"));
       	
         List<ContactoEmergencia> lista = condao.selecionar(numEmpleado);
         
@@ -33,6 +33,7 @@ public class ServletContactoLista extends HttpServlet{
         request.setAttribute("lista",lista);
         RequestDispatcher dispatcher = request.getRequestDispatcher("listaContactos.jsp");
         dispatcher.forward(request, response);
+
     }
 
 
