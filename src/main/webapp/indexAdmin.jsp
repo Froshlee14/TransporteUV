@@ -30,19 +30,23 @@
             	<p>Bienvenido al sistema de administrador </p>
             	<p> ¿Que accion quieres realizar? </p>
             
-            	<form action="ServletConductores" method="get">
+            	<form action="ServletConductorLista" method="get">
         			<input type="submit" name="updateData" value="Ver conductores">
     			</form>
     		
-    			<form action="ServletCambiarPassword" method="post">
+    			<form action="ServletAutobusLista" method="get">
         			<input type="submit" name="updateData" value="Ver autobuses">
     			</form>
     		
-    			<form action="ServletCambiarPassword" method="post">
+    			<form action="ServletViajeLista" method="get">
         			<input type="submit" name="updateData" value="Ver viajes">
     			</form>
     			
-    			<form action="ServletCambiarPassword" method="post">
+    			<form action="ServletRutaLista" method="get">
+        			<input type="submit" name="updateData" value="Ver rutas">
+    			</form>
+    			
+    			<form action="ServletUsuarioEditar" method="get">
         			<input type="submit" name="updateData" value="Cambiar contraseña">
     			</form>
 			</div>
