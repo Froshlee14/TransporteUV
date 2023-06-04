@@ -31,7 +31,7 @@ public class ServletContactoLista extends HttpServlet{
     	request.setAttribute("nombreEmpleado",nomEmpleado);
             
         request.setAttribute("lista",lista);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("listaContactos.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("contactoLista.jsp");
         dispatcher.forward(request, response);
 
     }

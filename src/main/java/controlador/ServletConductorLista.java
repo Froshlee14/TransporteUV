@@ -9,9 +9,9 @@ import java.util.*;
 import modelo.Conductor;
 import datos.ConductorDAO;
 
-@WebServlet("/ServletConductores")
+@WebServlet("/ServletConductorLista")
 
-public class ServletConductores extends HttpServlet{
+public class ServletConductorLista extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -27,7 +27,7 @@ public class ServletConductores extends HttpServlet{
         }
             
         request.setAttribute("lista",lista);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("listaConductores.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("conductorLista.jsp");
         dispatcher.forward(request, response);
     }
 
