@@ -15,6 +15,7 @@ public class Conductor implements Serializable{
 	private String direccion;
 	private String telefono;
 	private int yearsExp;
+	private boolean status;
 	
 	public Conductor() {
 		//Constructor vacio
@@ -34,7 +35,8 @@ public class Conductor implements Serializable{
 				Date fechaContrato,
 				String direccion,
 				String telefono,
-				int yearsExp
+				int yearsExp,
+				boolean status
 			) {
 		
 		//Constructor todos atributos
@@ -47,7 +49,16 @@ public class Conductor implements Serializable{
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.yearsExp = yearsExp;
+		this.status = status;
 		
+	}
+
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	public int getNumEmpleado() {

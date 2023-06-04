@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public class Autobus implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private int numUnidad;
 	private String numSerie;
 	private int idFabricante;
 	private int yearFabricacion;
 	private int capacidad;
+	private boolean status;
 	
 	public Autobus() {
 		//Constructor vacio
@@ -23,7 +25,8 @@ public class Autobus implements Serializable{
 				String numSerie,
 				int idFabricante,
 				int yearFabricacion,
-				int capacidad
+				int capacidad,
+				boolean status
 			) {
 		
 		//Constructor con todos atributos
@@ -32,9 +35,18 @@ public class Autobus implements Serializable{
 		this.idFabricante = idFabricante;
 		this.yearFabricacion = yearFabricacion;
 		this.capacidad = capacidad;
+		this.status = status;
 		
 	}
 	
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	public int getNumUnidad() {
 		return numUnidad;
 	}
