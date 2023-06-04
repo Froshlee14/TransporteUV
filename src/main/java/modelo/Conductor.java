@@ -53,6 +53,30 @@ public class Conductor implements Serializable{
 		
 	}
 
+	public Conductor(
+			String nombre,
+			String apellidoPaterno,
+			String apellidoMaterno,
+			Date birthday,
+			Date fechaContrato,
+			String direccion,
+			String telefono,
+			int yearsExp,
+			boolean status
+		) {
+	
+	this.nombre = nombre;
+	this.apellidoPaterno = apellidoPaterno;
+	this.apellidoMaterno = apellidoMaterno;
+	this.birthday = birthday;
+	this.fechaContrato = fechaContrato; 
+	this.direccion = direccion;
+	this.telefono = telefono;
+	this.yearsExp = yearsExp;
+	this.status = status;
+	
+}
+
 	public boolean getStatus() {
 		return status;
 	}
