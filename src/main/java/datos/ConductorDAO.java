@@ -39,8 +39,9 @@ public class ConductorDAO{
 				String direccion = result.getString("direccion");
 				String telefono = result.getString("telefono");
 				int yearsExp = result.getInt("yearsExp");
+				boolean status = result.getBoolean("status");
 				
-				con = new Conductor(numEmpleado,nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp);
+				con = new Conductor(numEmpleado,nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp,status);
 				conductores.add(con);
 			}
 			Conexion.close(result);

@@ -11,7 +11,7 @@ public class UsuarioDAO {
 	public static final String updateSQL = "UPDATE usuarios SET usuario=?,passwrd=?,numEmpleado=?,rol=? WHERE usuario=?";
 	public static final String deleteSQL = "DELETE FROM usuarios WHERE usuario=?";
 	
-	public Usuario mostrar(String us){
+	public Usuario buscar(String us){
         Connection conn = null;
         PreparedStatement state = null;
         ResultSet result = null;
@@ -29,8 +29,9 @@ public class UsuarioDAO {
 				String passwrd = result.getString("passwrd");
 				int numEmpleado = result.getInt("numEmpleado");
 				String rol = result.getString("rol");
+				boolean status = result.getBoolean("status");
 				
-				usuario = new Usuario(passwrd,numEmpleado,rol);
+				usuario = new Usuario(passwrd,numEmpleado,rol,status);
 			}
 			
 			Conexion.close(state);

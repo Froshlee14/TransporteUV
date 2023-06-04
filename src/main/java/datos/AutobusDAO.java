@@ -32,8 +32,9 @@ public class AutobusDAO {
 				int idFabricante = result.getInt("idFabricante");
 				int yearFabricacion = result.getInt("yearFabricacion");
 				int capacidad = result.getInt("capacidad");
+				boolean status = result.getBoolean("status");
 				
-				con = new Autobus(numUnidad,numSerie,idFabricante,yearFabricacion,capacidad);
+				con = new Autobus(numUnidad,numSerie,idFabricante,yearFabricacion,capacidad,status);
 				autobuses.add(con);
 			}
 			Conexion.close(result);
