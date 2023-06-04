@@ -46,7 +46,7 @@
         			<input type="submit" name="updateData" value="Ver rutas">
     			</form>
     			
-    			<form action="ServletUsuarioEditar" method="get">
+    			<form action="ServletUsuarioModificar" method="get">
         			<input type="submit" name="updateData" value="Cambiar contraseña">
     			</form>
 			</div>
