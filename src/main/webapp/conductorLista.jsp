@@ -39,6 +39,7 @@
 							<th>Fecha de contrato</th>
 							<th>Direccion</th>
 							<th>Telefono</th>
+							<th>Status</th>
 							
 						</tr>
 					</thead>
@@ -58,6 +59,16 @@
 						<td><%out.print(conductor.getFechaContrato());%></td>
 						<td><%out.print(conductor.getDireccion());%></td>
 						<td><%out.print(conductor.getTelefono());%></td>
+						<td> 
+							<%
+							if(conductor.getStatus()){
+								out.print("Activo");
+							}
+							else{
+								out.print("Inactivo");
+							}
+							%>
+						</td>
 					</tr>
 					<%
 						}
@@ -75,10 +86,10 @@
 					<label for="usuario">No. de empleado:</label>
 			    	<input id="usuario" type="number" name="numEmpleado" value="">    		
  
- 					<input type="submit" name="updateData" value="Modificar datos">
+ 					<input type="submit" formaction="ServletContactoModificar" value="Modificar datos">
 					<input type="submit" formaction="ServletContactoLista" value="Ver contactos">
     			</form>
-    			<form action="coductorNuevo.jsp">
+    			<form action="conductorAgregar.jsp">
 					<input type="submit" value="Nuevo conductor">
     			</form>
 			</div>
