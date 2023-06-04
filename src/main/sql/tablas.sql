@@ -8,6 +8,7 @@ CREATE TABLE conductor(
 	direccion varchar(120),
 	telefono varchar(10),
 	yearsExp int,
+	status boolean,
 	PRIMARY KEY(numEmpleado)
 );
 
@@ -35,6 +36,7 @@ CREATE TABLE autobus(
 	idFabricante int,
 	yearFabricacion int,
 	capacidad int,
+	status boolean,
 	PRIMARY KEY(numUnidad),
 	FOREIGN KEY (idFabricante) REFERENCES fabricante(idFabricante)
 );
@@ -81,6 +83,7 @@ CREATE TABLE usuarios(
 	passwrd varchar(6),
 	numEmpleado int,
 	rol varchar(8),
+	status boolean,
 	PRIMARY KEY(usuario)
 );
 

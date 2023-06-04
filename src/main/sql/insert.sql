@@ -1,9 +1,9 @@
-INSERT INTO conductor (nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp) VALUES
-	('Juan','García','Pérez','1990-05-10','2018-01-01','Calle Hidalgo #34, Colonia Centro, Veracruz','2285551234',5),
-	('Ana','Torres','Reyes','1992-08-15','2019-07-01','Avenida Juárez #76, Colonia Obrera, Xalapa','2295555678',7),
-	('Carlos','Martínez','Gómez','1995-04-20','2020-01-01','Calle Miguel Hidalgo #120, Colonia Libertad, Coatzacoalcos','2295559876',1),
-	('Sofía','Torres','García','1997-08-05','2021-04-01','Calle Pino Suárez #22, Colonia Emiliano Zapata, Poza Rica','2295554321',3),
-	('Luis','Hernández','Ortiz','1989-11-22','2019-01-01','Avenida Lerdo de Tejada #45, Colonia Centro, Boca del Río','2285556789',5)
+INSERT INTO conductor (nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp,status) VALUES
+	('Juan','García','Pérez','1990-05-10','2018-01-01','Calle Hidalgo #34, Colonia Centro, Veracruz','2285551234',5,true),
+	('Ana','Torres','Reyes','1992-08-15','2019-07-01','Avenida Juárez #76, Colonia Obrera, Xalapa','2295555678',7,true),
+	('Carlos','Martínez','Gómez','1995-04-20','2020-01-01','Calle Miguel Hidalgo #120, Colonia Libertad, Coatzacoalcos','2295559876',1,true),
+	('Sofía','Torres','García','1997-08-05','2021-04-01','Calle Pino Suárez #22, Colonia Emiliano Zapata, Poza Rica','2295554321',3,true),
+	('Luis','Hernández','Ortiz','1989-11-22','2019-01-01','Avenida Lerdo de Tejada #45, Colonia Centro, Boca del Río','2285556789',5,true)
 ;
 select * from conductor;
 
@@ -25,12 +25,12 @@ INSERT INTO fabricante (nombreFabricante) VALUES
 ;
 select * from fabricante;
 
-INSERT INTO autobus (numSerie,idFabricante,yearFabricacion,capacidad) VALUES
-	('X1K9L2H8M7N3O4P5',1,2001,40),
-	('B5N2M7J4K1L6H8G9',3,2012,35),
-	('Q4Z7X6C1V9B8N3M2',3,2006,40),
-	('L3K5J6H8G9F4D2S1',2,2000,40),
-	('A2B3C4D5E6F7G8H9',4,2011,35)
+INSERT INTO autobus (numSerie,idFabricante,yearFabricacion,capacidad,status) VALUES
+	('X1K9L2H8M7N3O4P5',1,2001,40,true),
+	('B5N2M7J4K1L6H8G9',3,2012,35,true),
+	('Q4Z7X6C1V9B8N3M2',3,2006,40,true),
+	('L3K5J6H8G9F4D2S1',2,2000,40,true),
+	('A2B3C4D5E6F7G8H9',4,2011,35,true)
 ;
 select * from autobus;
 
@@ -78,11 +78,11 @@ INSERT INTO autobusRuta (numUnidad,numRuta) VALUES
 ;
 select * from autobusRuta;
 
-INSERT INTO usuarios (usuario,passwrd,numEmpleado, rol) VALUES
-	('JuanitoG','juan01',1,'empleado'),
-	('AnaTorre','anit45',2,'empleado'),
-	('CarlosMa','carl05',3,'empleado'),
-	('SofiaTor','sofi45',4,'empleado'),
-	('LuisHern','luis22',5,'empleado'),
-	('Admin','lennon',0,'admin')
+INSERT INTO usuarios (usuario,passwrd,numEmpleado, rol, status) VALUES
+	('JuanitoG','juan01',1,'empleado',true),
+	('AnaTorre','anit45',2,'empleado',true),
+	('CarlosMa','carl05',3,'empleado',true),
+	('SofiaTor','sofi45',4,'empleado',true),
+	('LuisHern','luis22',5,'empleado',true),
+	('Admin','lennon',0,'admin',true)
 ;
