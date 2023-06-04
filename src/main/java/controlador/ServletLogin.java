@@ -21,7 +21,7 @@ public class ServletLogin extends HttpServlet{
       	String user = request.getParameter("inputUsuario");
       	String password = request.getParameter("inputPassword").trim();
       	
-        Usuario usuario = userdao.mostrar(user);
+        Usuario usuario = userdao.buscar(user);
     	//System.out.println("hola");
         
         if (usuario!=null) {
