@@ -8,6 +8,7 @@ public class Autobus implements Serializable{
 	private int numUnidad;
 	private String numSerie;
 	private int idFabricante;
+	private String fabricante;
 	private int yearFabricacion;
 	private int capacidad;
 	private boolean status;
@@ -15,7 +16,7 @@ public class Autobus implements Serializable{
 	public Autobus() {
 		//Constructor vacio
 	}
-	
+
 	public Autobus(int numUnidad) {
 		this.numUnidad = numUnidad;
 	}
@@ -39,6 +40,30 @@ public class Autobus implements Serializable{
 		
 	}
 	
+	public Autobus(
+				int numUnidad,
+				String numSerie,
+				String fabricante,
+				int yearFabricacion,
+				int capacidad,
+				boolean status
+			) {
+		this.numUnidad = numUnidad;
+		this.numSerie = numSerie;
+		this.fabricante = fabricante;
+		this.yearFabricacion = yearFabricacion;
+		this.capacidad = capacidad;
+		this.status = status;
+	}
+	
+	public String getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(String fabricante) {
+		this.fabricante = fabricante;
+	}
+
 	public boolean getStatus() {
 		return status;
 	}
