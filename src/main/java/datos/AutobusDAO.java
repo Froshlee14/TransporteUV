@@ -10,7 +10,7 @@ public class AutobusDAO {
 	
 	public static final String selectSQL = "SELECT * FROM autobus";
 	public static final String selectJoinSQL = "SELECT autobus.numUnidad, autobus.numSerie, fabricante.nombreFabricante as fabricante, autobus.yearFabricacion, autobus.capacidad, autobus.status FROM autobus JOIN fabricante ON autobus.idFabricante = fabricante.idFabricante;";
-	public static final String insertSQL = "INSERT INTO autobus (numSerie,idFabricante,yearFabricacion,capacidad,status) VALUES (?,?,?,?)";
+	public static final String insertSQL = "INSERT INTO autobus (numSerie,idFabricante,yearFabricacion,capacidad,status) VALUES (?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE autobus SET numSerie=?,idFabricante=?,yearFabricacion=?,capacidad=?,status=? WHERE numUnidad=?";
 	public static final String deleteSQL = "DELETE FROM autobus WHERE numUnidad=?";
 	
@@ -97,6 +97,7 @@ public class AutobusDAO {
 			state.setInt(2,autobus.getIdFabricante());
 			state.setInt(3,autobus.getYearFabricacion());
 			state.setInt(4,autobus.getCapacidad());
+			state.setBoolean(5,autobus.getStatus());
 			
 			registros = state.executeUpdate();
 			if(registros>0) {

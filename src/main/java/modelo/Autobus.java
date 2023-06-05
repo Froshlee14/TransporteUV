@@ -22,6 +22,22 @@ public class Autobus implements Serializable{
 	}
 	
 	public Autobus(
+			String numSerie,
+			int idFabricante,
+			int yearFabricacion,
+			int capacidad,
+			boolean status
+		) {
+	
+	this.numSerie = numSerie;
+	this.idFabricante = idFabricante;
+	this.yearFabricacion = yearFabricacion;
+	this.capacidad = capacidad;
+	this.status = status;
+	
+}
+	
+	public Autobus(
 				int numUnidad,
 				String numSerie,
 				int idFabricante,
