@@ -10,6 +10,8 @@ import java.time.format.DateTimeParseException;
 
 import modelo.Conductor;
 import datos.ConductorDAO;
+import modelo.Usuario;
+import datos.UsuarioDAO;
 
 @WebServlet("/ServletConductorAgregar")
 
@@ -48,7 +50,24 @@ public class ServletConductorAgregar extends HttpServlet{
 		
 		Conductor conductor = new Conductor(nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp,status);
       	ConductorDAO condao = new ConductorDAO();
-        condao.agregar(conductor);
+        int numEmpleado = condao.agregar(conductor);
+        System.out.println("numEmpelado");
+        
+        if (numEmpleado!=0) {
+        	System.out.println("Registro guardado, creando usuario");
+    		String nomUsuario = request.getParameter("usuario");
+    		String password = request.getParameter("password");
+    		String rol = "empleado";
+    		
+    		Usuario usuario = new Usuario(nomUsuario,password,numEmpleado,rol);
+          	UsuarioDAO udao = new UsuarioDAO();
+            udao.agregar(usuario);
+        }
+        else {
+        	System.out.println("No se pudo guardar el registro");
+        }
+        
+        
         response.sendRedirect("ServletConductorLista");
         
 	}
