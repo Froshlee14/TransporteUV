@@ -12,7 +12,7 @@ public class ConductorDAO{
 	public static final String selectNombreSQL = "SELECT nombre FROM conductor WHERE numEmpleado=?";
 	public static final String selectBuscaSQL = "SELECT * FROM conductor WHERE numEmpleado=?";
 	public static final String insertSQL = "INSERT INTO conductor (nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp) VALUES (?,?,?,?,?,?,?,?)";
-	public static final String updateSQL = "UPDATE conductor SET nombre=?,apellidoPaterno=?,apellidoMaterno=?,birthday=?,fechaContrato=?,direccion=?,telefono=?,yearsExp=? WHERE numEmpleado=?";
+	public static final String updateSQL = "UPDATE conductor SET nombre=?,apellidoPaterno=?,apellidoMaterno=?,birthday=?,fechaContrato=?,direccion=?,telefono=?,yearsExp=?,status=? WHERE numEmpleado=?";
 	public static final String deleteSQL = "DELETE FROM conductor WHERE numEmpleado=?";
 	
 	public List<Conductor> selecionar(){
@@ -54,18 +54,17 @@ public class ConductorDAO{
 		return conductores;
 	}
 	
-	public String seleccionarNombre(int us){
+	public String seleccionarNombre(int numEmpleado){
         Connection conn = null;
         PreparedStatement state = null;
         ResultSet result = null;
-		Conductor conductor = null;
 		String nombre = "Usuario";
 		
 		try {
             conn = Conexion.getConnection();
             state = conn.prepareStatement(selectNombreSQL);
             
-            state.setInt(1,us);
+            state.setInt(1,numEmpleado);
             
 			result = state.executeQuery();
 			if(result.next()) {
@@ -150,7 +149,6 @@ public class ConductorDAO{
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Conductor conductorNvo = new Conductor();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -175,7 +173,8 @@ public class ConductorDAO{
 			state.setString(6,conductor.getDireccion());
 			state.setString(7,conductor.getTelefono());
 			state.setInt(8,conductor.getYearsExp());
-			state.setInt(9,conductor.getNumEmpleado());
+			state.setBoolean(9, conductor.getStatus());
+			state.setInt(10,conductor.getNumEmpleado());
 			
 			registros = state.executeUpdate();
 			if(registros>0)
@@ -183,7 +182,6 @@ public class ConductorDAO{
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Conductor conductorMod = new Conductor();
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -191,7 +189,7 @@ public class ConductorDAO{
 		return registros;
 	}
 	
-	public int borrar(Conductor conductor) {
+	public int borrar(int numEmpleado) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -200,7 +198,7 @@ public class ConductorDAO{
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,conductor.getNumEmpleado());
+			state.setInt(1,numEmpleado);
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
@@ -209,7 +207,6 @@ public class ConductorDAO{
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Conductor conductorDelete = new Conductor();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
