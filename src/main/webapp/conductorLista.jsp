@@ -125,7 +125,7 @@
 	  	 	verContactosBtn.disabled = false;
 	  	 	
 	  	  	var borrarsBtn = document.getElementById("borrarBtn");
-	  	  borrarsBtn.disabled = false;
+	  	  	borrarsBtn.disabled = false;
 	  	 	
 	        var filas = document.getElementsByTagName("tr");
 	        

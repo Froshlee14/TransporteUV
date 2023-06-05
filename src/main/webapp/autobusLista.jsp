@@ -95,8 +95,8 @@
 					<input id="verRutasBtn" type="submit" formaction="ServletRutasLista" value="Ver rutas" disabled>
 					<input id="borrarBtn" type="submit" formaction="ServletAutobusBorrar" value="Borrar autobus" disabled>
     			</form>
-    			<form action="conductorAgregar.jsp">
-					<input type="submit" value="Nuevo conductor">
+    			<form action="ServletAutobusPreparar">
+					<input type="submit" value="Nuevo autobus">
     			</form>
 			</div>
 			
