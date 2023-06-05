@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="modelo.Conductor"%>
+<%@ page import="modelo.Usuario"%>
 <!DOCTYPE html>
 
 <html>
@@ -15,6 +16,7 @@
 	<jsp:useBean id="conductores" class="modelo.Conductor" scope="request" />
 	<%
 		Conductor conductor = (Conductor) request.getAttribute("conductor");
+		Usuario usuario = (Usuario) request.getAttribute("usuario");
 	%>
 
 	<div class="window" style="display: inline-block;">
@@ -87,12 +89,12 @@
  					
  						<div class="field-row-stacked">
 							<label for="nomUsuario">Nombre de usuario:</label>
-			    			<input id="nomUsuario" type="text" maxlength="8" name="usuario">    		
+			    			<input id="nomUsuario" type="text" maxlength="8" name="usuario" value="<%=usuario.getUsuario()%>">    		
  						</div>
  					
  						<div class="field-row-stacked">
 							<label for="pass">Contraseña:</label>
-			    			<input id="pass" type="text" maxlength="6" name="password">    		
+			    			<input id="pass" type="text" maxlength="6" name="password" value="<%=usuario.getPasswrd()%>">    		
  						</div>
  						
  						<div class="field-row">
