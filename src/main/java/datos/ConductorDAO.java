@@ -10,6 +10,7 @@ public class ConductorDAO{
 	
 	public static final String selectSQL = "SELECT * FROM conductor";
 	public static final String selectNombreSQL = "SELECT nombre FROM conductor WHERE numEmpleado=?";
+	public static final String selectBuscaSQL = "SELECT * FROM conductor WHERE numEmpleado=?";
 	public static final String insertSQL = "INSERT INTO conductor (nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp) VALUES (?,?,?,?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE conductor SET nombre=?,apellidoPaterno=?,apellidoMaterno=?,birthday=?,fechaContrato=?,direccion=?,telefono=?,yearsExp=? WHERE numEmpleado=?";
 	public static final String deleteSQL = "DELETE FROM conductor WHERE numEmpleado=?";
@@ -19,8 +20,6 @@ public class ConductorDAO{
         Statement state = null;
         ResultSet result = null;
 		Conductor con = null;
-		
-	    System.out.println("Hola ");
 		
 		List<Conductor> conductores = new ArrayList<>();
 		
@@ -84,6 +83,46 @@ public class ConductorDAO{
 		}
 		
 		return nombre;
+	}
+	
+	public Conductor buscar(int num){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+		Conductor conductor = null;
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(selectBuscaSQL);
+            
+            state.setInt(1,num);
+            
+			result = state.executeQuery();
+			
+			while(result.next()) {
+				int numEmpleado = result.getInt("numEmpleado");
+				String nombre = result.getString("nombre");
+				String apellidoPaterno = result.getString("apellidoPaterno");
+				String apellidoMaterno = result.getString("apellidoMaterno");
+				Date birthday = result.getDate("birthday");
+				Date fechaContrato = result.getDate("fechaContrato");
+				String direccion = result.getString("direccion");
+				String telefono = result.getString("telefono");
+				int yearsExp = result.getInt("yearsExp");
+				boolean status = result.getBoolean("status");
+				
+				System.out.println("registro encontrado");
+				conductor = new Conductor(numEmpleado,nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp,status);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return conductor;
 	}
 	
 	public int agregar(Conductor conductor) {
