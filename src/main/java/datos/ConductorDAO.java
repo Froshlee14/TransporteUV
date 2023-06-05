@@ -128,10 +128,11 @@ public class ConductorDAO{
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
+		int idGenerado = 0;
 		
 		try {
 			conn = Conexion.getConnection();
-			state = conn.prepareStatement(insertSQL);
+			state = conn.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
 			
 			state.setString(1,conductor.getNombre());
 			state.setString(2,conductor.getApellidoPaterno());
@@ -143,9 +144,13 @@ public class ConductorDAO{
 			state.setInt(8,conductor.getYearsExp());
 			
 			registros = state.executeUpdate();
-			if(registros>0) {
-				System.out.println("Registro agregado correctamente");
-			}
+	        if (registros > 0) {
+	            ResultSet generatedKeys = state.getGeneratedKeys();
+	            if (generatedKeys.next()) {
+	                idGenerado = generatedKeys.getInt(1);
+	                System.out.println("ID generada: " + idGenerado);
+	            }
+	        }
 			
 			Conexion.close(state);
 			Conexion.close(conn);
@@ -153,7 +158,8 @@ public class ConductorDAO{
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return registros;
+		
+		return idGenerado;
 	}
 	
 	public int modificar(Conductor conductor) {
