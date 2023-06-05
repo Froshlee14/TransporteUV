@@ -15,7 +15,6 @@
 	<jsp:useBean id="conductores" class="modelo.Conductor" scope="request" />
 	<%
 		Conductor conductor = (Conductor) request.getAttribute("conductor");
-		//out.println(conductor.getNombre());
 	%>
 
 	<div class="window" style="display: inline-block;">
@@ -29,15 +28,17 @@
 
 		<div class="window-body"  style="margin: 15px;">
 			
-			<form action="ServletConductorBuscar" method="post">
+			<form action="ServletConductorModificar" method="post" accept-charset="UTF-8">
 			
 				<div class="field-row">
 				
 					<fieldset > <legend>Informacion general</legend>
+					
+						<input id="numEmpleado" type="hidden" maxlength="30" name="numEmpleado" value="<%=conductor.getNumEmpleado()%>">	
 				
 						<div class="field-row-stacked">
 							<label for="nombre">Nombre:</label>
-			    			<input id="nombre" type="text" maxlength="30" name="nombre" value="<%=conductor.getNombre()%>">    		
+			    			<input id="nombre" type="text" maxlength="30" name="nombre" value="<%=conductor.getNombre()%>">	
  						</div>
 
 						<div class="field-row-stacked">
@@ -96,15 +97,25 @@
  						
  						<div class="field-row">
 							<label for="stat">Status:</label>
-			    			<select>
-  								<option>Activo</option>
-  								<option>Inactivo</option>
-							</select>  		
+								<select id="stat" name="status">
+   								<% 
+    							boolean status = conductor.getStatus();
+    
+    							if (status) {
+    							    out.println("<option value='true' selected>Activo</option>");
+    							    out.println("<option value='false'>Inactivo</option>");
+   								}
+    							else {
+        							out.println("<option value='true'>Activo</option>");
+      							  	out.println("<option value='false' selected>Inactivo</option>");
+   								}
+    							%>
+    							</select>	
  						</div>
  						
 					</fieldset>
 					
-					<input type="submit" value="Actialuzar datos">
+					<input type="submit" value="Actualizar datos">
 					</div>
 					
 				</div>

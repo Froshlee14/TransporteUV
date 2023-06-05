@@ -23,14 +23,14 @@
 			</div>
 		</div>
 
-		<div class="window-body"  style="margin: 15px;">
+		<div class="window-body">
 			
-			<form action="ServletConductorAgregar" method="post">
+			<form action="ServletConductorAgregar" method="post" accept-charset="UTF-8">
 			
 				<div class="field-row">
 				
 					<fieldset > <legend>Informacion general</legend>
-				
+						
 						<div class="field-row-stacked">
 							<label for="nombre">Nombre:</label>
 			    			<input id="nombre" type="text" maxlength="30" name="nombre">    		
@@ -92,7 +92,7 @@
  						
  						<div class="field-row">
 							<label for="stat">Status:</label>
-			    			<select>
+			    			<select id="stat" name="status">
   								<option>Activo</option>
   								<option>Inactivo</option>
 							</select>  		

@@ -99,6 +99,7 @@
  
  					<input id="modificarBtn" type="submit" formaction="ServletConductorBuscar" value="Modificar datos" disabled>
 					<input id="verContactosBtn" type="submit" formaction="ServletContactoLista" value="Ver contactos" disabled>
+					<input id="borrarBtn" type="submit" formaction="ServletConductorBorrar" value="Borrar conductor" disabled>
     			</form>
     			<form action="conductorAgregar.jsp">
 					<input type="submit" value="Nuevo conductor">
@@ -122,6 +123,9 @@
 	  	  	
 	  	  	var verContactosBtn = document.getElementById("verContactosBtn");
 	  	 	verContactosBtn.disabled = false;
+	  	 	
+	  	  	var borrarsBtn = document.getElementById("borrarBtn");
+	  	  borrarsBtn.disabled = false;
 	  	 	
 	        var filas = document.getElementsByTagName("tr");
 	        
