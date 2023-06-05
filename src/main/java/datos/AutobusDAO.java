@@ -141,7 +141,7 @@ public class AutobusDAO {
 		return registros;
 	}
 	
-	public int borrar(Autobus autobus) {
+	public int borrar(int numUnidad) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -150,7 +150,7 @@ public class AutobusDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,autobus.getNumUnidad());
+			state.setInt(1,numUnidad);
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
