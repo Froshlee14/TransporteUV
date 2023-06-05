@@ -83,7 +83,6 @@ CREATE TABLE usuarios(
 	passwrd varchar(6),
 	numEmpleado int,
 	rol varchar(8),
-	status boolean,
 	PRIMARY KEY(usuario)
 );
 

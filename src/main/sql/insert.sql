@@ -78,11 +78,11 @@ INSERT INTO autobusRuta (numUnidad,numRuta) VALUES
 ;
 select * from autobusRuta;
 
-INSERT INTO usuarios (usuario,passwrd,numEmpleado, rol, status) VALUES
-	('JuanitoG','juan01',1,'empleado',true),
-	('AnaTorre','anit45',2,'empleado',true),
-	('CarlosMa','carl05',3,'empleado',true),
-	('SofiaTor','sofi45',4,'empleado',true),
-	('LuisHern','luis22',5,'empleado',true),
-	('Admin','lennon',0,'admin',true)
+INSERT INTO usuarios (usuario,passwrd,numEmpleado, rol) VALUES
+	('JuanitoG','juan01',1,'empleado'),
+	('AnaTorre','anit45',2,'empleado'),
+	('CarlosMa','carl05',3,'empleado'),
+	('SofiaTor','sofi45',4,'empleado'),
+	('LuisHern','luis22',5,'empleado'),
+	('Admin','lennon',0,'admin')
 ;
