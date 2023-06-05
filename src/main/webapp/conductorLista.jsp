@@ -6,8 +6,19 @@
 <html>
 
 <head>
-<title>TransporteUV</title>
-<link rel="stylesheet" href="https://unpkg.com/98.css">
+	<title>TransporteUV</title>
+	<link rel="stylesheet" href="https://unpkg.com/98.css">
+
+  	<style>
+    	tr:hover {
+      		background-color: #c3c3c3;
+      		cursor: pointer;
+    	}
+    	tr.selected {
+      		background-color: #409ed0;
+    	}
+  	</style>
+
 </head>
 
 <body>
@@ -50,8 +61,8 @@
 					if (lista != null) {
 						for (Conductor conductor : lista) {
 					%>
-					<tr onclick="seleccionarEmpleado('<%= conductor.getNumEmpleado() %>')">
-						<td> <%out.print(conductor.getNumEmpleado());%> </td>
+					<tr onclick="seleccionarEmpleado(<%= conductor.getNumEmpleado() %>,this)">
+						<td><%out.print(conductor.getNumEmpleado());%></td>
 						<td><%out.print(conductor.getNombre());%></td>
 						<td><%out.print(conductor.getApellidoPaterno());%></td>
 						<td><%out.print(conductor.getApellidoMaterno());%></td>
@@ -83,11 +94,11 @@
 			
 			<div class="field-row" style="margin-top: 15px;  justify-content: flex-end;">
 				<form method="get">
-					<label for="usuario">No. de empleado:</label>
-			    	<input id="usuario" type="number" name="numEmpleado" value="">    		
+					<label for="usuario"> </label>
+			    	<input id="usuario" type="hidden" name="numEmpleado" readonly>    		
  
- 					<input type="submit" formaction="ServletContactoModificar" value="Modificar datos">
-					<input type="submit" formaction="ServletContactoLista" value="Ver contactos">
+ 					<input id="modificarBtn" type="submit" formaction="ServletConductorBuscar" value="Modificar datos" disabled>
+					<input id="verContactosBtn" type="submit" formaction="ServletContactoLista" value="Ver contactos" disabled>
     			</form>
     			<form action="conductorAgregar.jsp">
 					<input type="submit" value="Nuevo conductor">
@@ -96,6 +107,33 @@
 			
 		</div>
 	</div>
+	
+	<script>
+		//Evitemos la flojera del usuario para escribir el numero de empleado
+  		function seleccionarEmpleado(num,row) {
+  			
+			//Movemos el numero de empleado al input oculto.
+	  		var inputNumEmpleado = document.getElementById("usuario");
+	  		inputNumEmpleado.value = num;
+	  		
+	  		//Asimismo los botones estaran desactivados mientras el input este vacio
+	  	 	var modificarBtn = document.getElementById("modificarBtn");
+	  	  	modificarBtn.disabled = false;
+	  	  	
+	  	  	var verContactosBtn = document.getElementById("verContactosBtn");
+	  	 	verContactosBtn.disabled = false;
+	  	 	
+	        var filas = document.getElementsByTagName("tr");
+	        
+	        //Quito la propiedad "selected" al resto de columnas
+	        for (var i = 0; i < filas.length; i++) {
+	          filas[i].classList.remove("selected");
+	        }
+	        
+	        //Cambio el color la columna seleccionada
+	       	row.classList.add("selected");
+  		}
+	</script>
 
 </body>
 
