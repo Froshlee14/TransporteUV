@@ -19,6 +19,7 @@ public class ServletConductorAgregar extends HttpServlet{
 	@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+		request.setCharacterEncoding("UTF-8");
 		
 		String nombre = request.getParameter("nombre");
 		String apellidoPaterno = request.getParameter("apellidoPaterno");
@@ -48,7 +49,7 @@ public class ServletConductorAgregar extends HttpServlet{
 		Conductor conductor = new Conductor(nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp,status);
       	ConductorDAO condao = new ConductorDAO();
         condao.agregar(conductor);
-        response.sendRedirect("");
+        response.sendRedirect("ServletConductorLista");
         
 	}
 }
