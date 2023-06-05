@@ -8,32 +8,21 @@ public class Usuario implements Serializable{
 	private String passwrd;
 	private int numEmpleado;
 	private String rol;
-	private boolean status;
 	
 	public Usuario() {
 	}
 	
-	public Usuario(String usuario, String passwrd, int numEmpleado, String rol, boolean status) {
+	public Usuario(String usuario, String passwrd, int numEmpleado, String rol) {
 		this.usuario = usuario;
 		this.passwrd = passwrd;
 		this.numEmpleado = numEmpleado;
 		this.rol = rol;
-		this.status = status;
 	}
 
-	public Usuario(String passwrd, int numEmpleado, String rol,boolean status) {
+	public Usuario(String passwrd, int numEmpleado, String rol) {
 		this.passwrd = passwrd;
 		this.numEmpleado = numEmpleado;
 		this.rol = rol;
-		this.status = status;
-	}
-
-	public boolean getStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
 	}
 
 	public String getUsuario() {
