@@ -26,6 +26,17 @@ public class Ruta implements Serializable {
 		this.destinoFinal = destinoFinal;
 	}
 	
+	public Ruta(
+				String descripcion,
+				String destinoInicial,
+				String destinoFinal
+			) {
+		
+		this.descripcion = descripcion;
+		this.destinoInicial = destinoInicial;
+		this.destinoFinal = destinoFinal;
+	}
+
 	public int getNumRuta() {
 		return numRuta;
 	}
