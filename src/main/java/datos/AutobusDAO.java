@@ -8,7 +8,8 @@ import modelo.Autobus;
 
 public class AutobusDAO {
 	
-	public static final String selectSQL = "SELECT * FROM autobus";
+	public static final String selectSQL = "SELECT * FROM autobus ";
+	public static final String selectBuscaSQL = "SELECT * FROM autobus WHERE numUnidad=?";
 	public static final String selectJoinSQL = "SELECT autobus.numUnidad, autobus.numSerie, fabricante.nombreFabricante as fabricante, autobus.yearFabricacion, autobus.capacidad, autobus.status FROM autobus JOIN fabricante ON autobus.idFabricante = fabricante.idFabricante;";
 	public static final String insertSQL = "INSERT INTO autobus (numSerie,idFabricante,yearFabricacion,capacidad,status) VALUES (?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE autobus SET numSerie=?,idFabricante=?,yearFabricacion=?,capacidad=?,status=? WHERE numUnidad=?";
@@ -84,6 +85,43 @@ public class AutobusDAO {
 		return autobuses;
 	}
 	
+	public Autobus buscar(int num){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+		Autobus autobus = null;
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(selectBuscaSQL);
+            
+            state.setInt(1,num);
+            
+			result = state.executeQuery();
+			
+			while(result.next()) {
+				int numUnidad = result.getInt("numUnidad");
+				String numSerie = result.getString("numSerie");
+				int fabricante = result.getInt("idFabricante");
+				int yearFabricacion = result.getInt("yearFabricacion");
+				int capacidad = result.getInt("capacidad");
+				boolean status = result.getBoolean("status");
+				
+				System.out.println("registro encontrado AutobusDAO");
+				autobus = new Autobus(numUnidad,numSerie,fabricante,yearFabricacion,capacidad,status);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return autobus;
+	}
+	
+	
 	public int agregar(Autobus autobus) {
 		Connection conn = null;
 		PreparedStatement state = null;
@@ -126,7 +164,8 @@ public class AutobusDAO {
 			state.setInt(2,autobus.getIdFabricante());
 			state.setInt(3,autobus.getYearFabricacion());
 			state.setInt(4,autobus.getCapacidad());
-			state.setInt(5,autobus.getNumUnidad());
+			state.setBoolean(5,autobus.getStatus());
+			state.setInt(6,autobus.getNumUnidad());
 			
 			registros = state.executeUpdate();
 			if(registros>0)

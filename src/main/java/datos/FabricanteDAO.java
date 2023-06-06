@@ -37,12 +37,6 @@ public class FabricanteDAO {
 			Conexion.close(state);
 			Conexion.close(conn);
 			
-			for(Fabricante f: fabricantes) {
-				System.out.println("ID de fabricante: " + f.getIdFabricante());
-				System.out.println("Nombre de fabricante: " + f.getNombreFabricante());
-				System.out.println("\n");
-			}
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
