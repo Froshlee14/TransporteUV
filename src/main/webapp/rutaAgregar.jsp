@@ -14,7 +14,7 @@
 
 	<jsp:useBean id="conductores" class="modelo.Conductor" scope="request" />
 
-	<div class="window" style="display: inline-block;">
+	<div class="window" style="width: 400px;">
 
 		<div class="title-bar">
 			<div class="title-bar-text">rutaAgregar.jsp</div>
@@ -27,7 +27,7 @@
 			
 			<form action="ServletRutaAgregar" method="post" accept-charset="UTF-8">
 			
-				<div class="field-row">
+				<div class="field-row-stacked">
 				
 					<fieldset > <legend>Informacion general</legend>
 						
