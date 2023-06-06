@@ -75,7 +75,6 @@ public class RutaDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Ruta rutaNvo = new Ruta();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -103,7 +102,6 @@ public class RutaDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Ruta rutaMod = new Ruta();
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -129,7 +127,6 @@ public class RutaDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Ruta rutaDelete = new Ruta();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
