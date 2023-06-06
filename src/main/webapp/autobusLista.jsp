@@ -58,7 +58,7 @@
 					if (lista != null) {
 						for (Autobus autobus : lista) {
 					%>
-					<tr onclick="seleccionarEmpleado(<%= autobus.getNumUnidad() %>,this)">
+					<tr onclick="seleccionarAutobus(<%= autobus.getNumUnidad() %>,this)">
 						<td><%out.print(autobus.getNumUnidad());%></td>
 						<td><%out.print(autobus.getNumSerie());%></td>
 						<td><%out.print(autobus.getFabricante());%></td>
@@ -105,7 +105,7 @@
 	
 	<script>
 		//Evitemos la flojera del usuario para escribir el numero de empleado
-  		function seleccionarEmpleado(num,row) {
+  		function seleccionarAutobus(num,row) {
   			
 			//Movemos el numero de empleado al input oculto.
 	  		var inputNumEmpleado = document.getElementById("numUnidad");

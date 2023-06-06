@@ -17,7 +17,7 @@
       	<%
 			Usuario usuario = (Usuario) request.getAttribute("usuario");
         %>
-        <div class="window" style="width: 300px">
+        <div class="window" style="width: 200px">
         
           	<div class="title-bar">
     			<div class="title-bar-text">indexEmplaedo.jsp</div>
@@ -28,27 +28,34 @@
 
         	<div class="window-body">
             	<p>Bienvenido al sistema de administrador </p>
-            	<p> ¿Que accion quieres realizar? </p>
+            	
+            	<fieldset > <legend> ¿Que accion quieres realizar?  </legend>
             
+            	<div class="field-row-stacked">
+            	
             	<form action="ServletConductorLista" method="get">
-        			<input type="submit" name="updateData" value="Ver conductores">
+        			<input type="submit" name="updateData" value="Administrar conductores" style="width: 100%">
     			</form>
     		
     			<form action="ServletAutobusLista" method="get">
-        			<input type="submit" name="updateData" value="Ver autobuses">
+        			<input type="submit" name="updateData" value="Administrar autobuses" style="width: 100%">
     			</form>
     		
     			<form action="ServletViajeLista" method="get">
-        			<input type="submit" name="updateData" value="Ver viajes">
+        			<input type="submit" name="updateData" value="Administrar viajes" style="width: 100%">
     			</form>
     			
     			<form action="ServletRutaLista" method="get">
-        			<input type="submit" name="updateData" value="Ver rutas">
+        			<input type="submit" name="updateData" value="Administrar rutas" style="width: 100%">
     			</form>
     			
-    			<form action="ServletUsuarioModificar" method="get">
-        			<input type="submit" name="updateData" value="Cambiar contraseña">
-    			</form>
+    			</div>
+    			
+    			</fieldset>
+    			
+<!--     			<form action="ServletUsuarioModificar" method="get"> -->
+<!--         			<input type="submit" name="updateData" value="Cambiar contraseña" style="width: 100%"> -->
+<!--     			</form> -->
 			</div>
 			
     	</div>
