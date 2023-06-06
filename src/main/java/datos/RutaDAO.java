@@ -40,14 +40,6 @@ public class RutaDAO {
 			Conexion.close(state);
 			Conexion.close(conn);
 			
-			for(Ruta r: rutas) {
-				System.out.println("Numero de ruta: " + r.getNumRuta());
-				System.out.println("Descripcion: " + r.getDescripcion());
-				System.out.println("Destino inicial: " + r.getDestinoInicial());
-				System.out.println("Destino final: " + r.getDestinoFinal());
-				System.out.println("\n");
-			}
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -109,7 +101,7 @@ public class RutaDAO {
 		return registros;
 	}
 	
-	public int borrar(Ruta ruta) {
+	public int borrar(int numRuta) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -118,7 +110,7 @@ public class RutaDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,ruta.getNumRuta());
+			state.setInt(1,numRuta);
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
