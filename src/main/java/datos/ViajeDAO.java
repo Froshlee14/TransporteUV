@@ -9,10 +9,10 @@ import modelo.Viaje;
 public class ViajeDAO {
 	
 	
-	public static final String selectSQL = "SELECT * FROM viajes";
-	public static final String insertSQL = "INSERT INTO viajes (direccion,horaPartida,horaLlegada) VALUES (?,?,?)";
-	public static final String updateSQL = "UPDATE viajes SET direccion=?,horaPartida=?,horaLlegada=?, WHERE numViaje=?";
-	public static final String deleteSQL = "DELETE FROM viajes WHERE numViaje=?";
+	public static final String selectSQL = "SELECT * FROM viaje";
+	public static final String insertSQL = "INSERT INTO viaje (direccion,horaPartida,horaLlegada) VALUES (?,?,?)";
+	public static final String updateSQL = "UPDATE viaje SET direccion=?,horaPartida=?,horaLlegada=?, WHERE numViaje=?";
+	public static final String deleteSQL = "DELETE FROM viaje WHERE numViaje=?";
 	
 	public List<Viaje> selecionar(){
         Connection conn = null;
@@ -39,14 +39,6 @@ public class ViajeDAO {
 			Conexion.close(result);
 			Conexion.close(state);
 			Conexion.close(conn);
-			
-			for(Viaje v: viajes) {
-				System.out.println("Numero de viaje: " + v.getNumViaje());
-				System.out.println("Direccion: " + v.getDireccion());
-				System.out.println("Hora de parida: " + v.getHoraPartida());
-				System.out.println("Hora de llegada: " + v.getHoraLlegada());
-				System.out.println("\n");
-			}
 			
 		} catch(Exception e) {
 			e.printStackTrace();
