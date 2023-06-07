@@ -30,8 +30,8 @@ public class ViajeDAO {
 			while(result.next()) {
 				int numViaje = result.getInt("numViaje");
 				String direccion = result.getString("direccion");
-				String horaPartida = result.getString("horaPartida");
-				String horaLlegada = result.getString("horaLlegada");
+				Time horaPartida = result.getTime("horaPartida");
+				Time horaLlegada = result.getTime("horaLlegada");
 				
 				ru = new Viaje(numViaje,direccion,horaPartida,horaLlegada);
 				viajes.add(ru);
@@ -57,8 +57,8 @@ public class ViajeDAO {
 			state = conn.prepareStatement(insertSQL);
 			
 			state.setString(1,viaje.getDireccion());
-			state.setString(2,viaje.getHoraPartida());
-			state.setString(3,viaje.getHoraLlegada());
+			state.setTime(2,viaje.getHoraPartida());
+			state.setTime(3,viaje.getHoraLlegada());
 			
 			registros = state.executeUpdate();
 			if(registros>0) {
@@ -67,7 +67,6 @@ public class ViajeDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Viaje viajeNvo = new Viaje();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -85,8 +84,8 @@ public class ViajeDAO {
 			state = conn.prepareStatement(updateSQL);
 			
 			state.setString(1,viaje.getDireccion());
-			state.setString(2,viaje.getHoraPartida());
-			state.setString(3,viaje.getHoraLlegada());
+			state.setTime(2,viaje.getHoraPartida());
+			state.setTime(3,viaje.getHoraLlegada());
 			state.setInt(4,viaje.getNumViaje());
 			
 			registros = state.executeUpdate();
@@ -95,7 +94,6 @@ public class ViajeDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Viaje viajeMod = new Viaje();
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -121,7 +119,6 @@ public class ViajeDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Viaje viajeDelete = new Viaje();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
