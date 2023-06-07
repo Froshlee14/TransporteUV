@@ -89,7 +89,7 @@
 					<input id="borrarBtn" type="submit" formaction="ServletContactoBorrar" value="Borrar contacto" disabled>
     			</form>
     			<form action="contactoAgregar.jsp">
-    				<input type="hidden" name="numEmpleado" value="<%= conductor.getNombre() %>">
+    				<input type="hidden" name="numEmpleado" value="<%= conductor.getNumEmpleado() %>">
 					<input type="submit" value="Nuevo contacto">
     			</form>
 			</div>
