@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="java.util.List"%>
-<%@ page import="modelo.Ruta"%>
+<%@ page import="modelo.Viaje"%>
 <!DOCTYPE html>
 
 <html>
@@ -12,12 +12,12 @@
 
 <body>
 
-	<jsp:useBean id="rutas" class="modelo.Ruta" scope="request" />
+	<jsp:useBean id="viajes" class="modelo.Viaje" scope="request" />
 
-	<div class="window" style="width: 400px;">
+	<div class="window" style="width: 250px;">
 
 		<div class="title-bar">
-			<div class="title-bar-text">rutaAgregar.jsp</div>
+			<div class="title-bar-text">viajeAgregar.jsp</div>
 			<div class="title-bar-controls">
 				<button aria-label="Close"></button>
 			</div>
@@ -25,30 +25,30 @@
 
 		<div class="window-body">
 			
-			<form action="ServletRutaAgregar" method="post" accept-charset="UTF-8">
+			<form action="ServletViajeAgregar" method="post" accept-charset="UTF-8">
 			
 				<div class="field-row-stacked">
 				
 					<fieldset > <legend>Informacion general</legend>
 						
 						<div class="field-row-stacked">
-							<label for="descripcion">Descripcion:</label>
-			    			<input id="descripcion" type="text" maxlength="100" name="descripcion">    		
+							<label for="direccion">Direccion:</label>
+			    			<input id="direccion" type="text" maxlength="100" name="direccion">    		
  						</div>
 
 						<div class="field-row-stacked">
-							<label for="destinoInicial">Destino inicial:</label>
-			    			<input id="destinoInicial" type="text" maxlength="50" name="destinoInicial">    		
+							<label for="horaPartida">Hora de partida:</label>
+			    			<input id="horaPartida" type="time" maxlength="20" name="horaPartida">    		
  						</div>
  					
  						<div class="field-row-stacked">
-							<label for="destinoFinal">Destino Final:</label>
-			    			<input id="destinoFinal" type="text" maxlength="50" name="destinoFinal">    		
+							<label for="horaLlegada">Hora de llegada:</label>
+			    			<input id="horaLlegada" type="time" maxlength="20" name="horaLlegada">    		
  						</div>
  					
  					</fieldset>
 					
-					<input type="submit" value="Agregar ruta">
+					<input type="submit" value="Agregar viaje">
 					
 				</div>
 				

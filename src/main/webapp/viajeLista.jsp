@@ -82,7 +82,7 @@
 					<input id="borrarBtn" type="submit" formaction="ServletViajeBorrar" value="Borrar ruta" disabled>
     			</form>
     			<form action="viajeAgregar.jsp">
-					<input type="submit" value="Nueva ruta">
+					<input type="submit" value="Nuevo viaje">
     			</form>
 			</div>
 			
