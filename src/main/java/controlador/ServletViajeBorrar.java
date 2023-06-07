@@ -5,19 +5,19 @@ import javax.servlet.http.*;
 import java.io.*;
 import javax.servlet.*;
 
-import datos.RutaDAO;
+import datos.ViajeDAO;
 
-@WebServlet("/ServletRutaBorrar")
+@WebServlet("/ServletViajeBorrar")
 
-public class ServletRutaBorrar extends HttpServlet{
+public class ServletViajeBorrar extends HttpServlet{
 private static final long serialVersionUID = 1L;
 	
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        int numRuta = Integer.parseInt(request.getParameter(("numRuta")));
-        RutaDAO rutadao = new RutaDAO();
-        rutadao.borrar(numRuta);
+        int numViaje = Integer.parseInt(request.getParameter(("numViaje")));
+        ViajeDAO rutadao = new ViajeDAO();
+        rutadao.borrar(numViaje);
         
         response.sendRedirect("ServletViajeLista");
     }
