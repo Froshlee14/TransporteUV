@@ -75,7 +75,6 @@ public class ContactoEmergenciaDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			ContactoEmergencia contactoEmergenciaNvo = new ContactoEmergencia();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -106,7 +105,6 @@ public class ContactoEmergenciaDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			ContactoEmergencia contactoEmergenciaMod = new ContactoEmergencia();
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -114,7 +112,7 @@ public class ContactoEmergenciaDAO {
 		return registros;
 	}
 	
-	public int borrar(ContactoEmergencia contactoEmergencia) {
+	public int borrar(int num) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -123,7 +121,7 @@ public class ContactoEmergenciaDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,contactoEmergencia.getNumContacto());
+			state.setInt(1,num);
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
@@ -132,7 +130,6 @@ public class ContactoEmergenciaDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			ContactoEmergencia contactoEmergenciaDelete = new ContactoEmergencia();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -83,7 +83,8 @@
 			<div class="field-row" style="margin-top: 15px;  justify-content: flex-end;">
 				<form method="get">
 					<label for="numContacto"> </label>
-			    	<input id="numContacto" type="hidden" name="numContacto" readonly>    		
+			    	<input id="numContacto" type="hidden" name="numContacto" readonly>
+			    	<input type="hidden" name="numEmpleado" value="<%= conductor.getNumEmpleado() %>">		
  
  					<input id="modificarBtn" type="submit" formaction="ServletContactoBuscar" value="Modificar contacto" disabled>
 					<input id="borrarBtn" type="submit" formaction="ServletContactoBorrar" value="Borrar contacto" disabled>
