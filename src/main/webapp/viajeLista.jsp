@@ -79,7 +79,7 @@
 			    	<input id="numViaje" type="hidden" name="numViaje" readonly>    		
  
  					<input id="modificarBtn" type="submit" formaction="ServletViajeBuscar" value="Modificar datos" disabled>
-					<input id="borrarBtn" type="submit" formaction="ServletViajeBorrar" value="Borrar ruta" disabled>
+					<input id="borrarBtn" type="submit" formaction="ServletViajeBorrar" value="Borrar viaje" disabled>
     			</form>
     			<form action="viajeAgregar.jsp">
 					<input type="submit" value="Nuevo viaje">

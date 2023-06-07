@@ -10,8 +10,9 @@ public class ViajeDAO {
 	
 	
 	public static final String selectSQL = "SELECT * FROM viaje";
+	public static final String selectBuscaSQL = "SELECT * FROM viaje WHERE numViaje=?";
 	public static final String insertSQL = "INSERT INTO viaje (direccion,horaPartida,horaLlegada) VALUES (?,?,?)";
-	public static final String updateSQL = "UPDATE viaje SET direccion=?,horaPartida=?,horaLlegada=?, WHERE numViaje=?";
+	public static final String updateSQL = "UPDATE viaje SET direccion=?,horaPartida=?,horaLlegada=? WHERE numViaje=?";
 	public static final String deleteSQL = "DELETE FROM viaje WHERE numViaje=?";
 	
 	public List<Viaje> selecionar(){
@@ -45,6 +46,40 @@ public class ViajeDAO {
 		}
 		
 		return viajes;
+	}
+	
+	public Viaje buscar(int num){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+		Viaje viaje = null;
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(selectBuscaSQL);
+            
+            state.setInt(1,num);
+            
+			result = state.executeQuery();
+			
+			while(result.next()) {
+				int numViaje = result.getInt("numViaje");
+				String direccion = result.getString("direccion");
+				Time horaPartida = result.getTime("horaPartida");
+				Time horaLlegada = result.getTime("horaLlegada");
+				
+				System.out.println("registro encontrado ViajeDAO");
+				viaje = new Viaje(numViaje,direccion,horaPartida,horaLlegada);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return viaje;
 	}
 	
 	public int agregar(Viaje viaje) {
@@ -89,8 +124,11 @@ public class ViajeDAO {
 			state.setInt(4,viaje.getNumViaje());
 			
 			registros = state.executeUpdate();
-			if(registros>0)
+			if(registros>0) {
 				System.out.println("Registro actualizado");
+			}else {
+				System.out.println("Registro no actualizado");
+			}
 			
 			Conexion.close(state);
 			Conexion.close(conn);
@@ -101,7 +139,7 @@ public class ViajeDAO {
 		return registros;
 	}
 	
-	public int borrar(Viaje viaje) {
+	public int borrar(int numViaje) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -110,7 +148,7 @@ public class ViajeDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,viaje.getNumViaje());
+			state.setInt(1,numViaje);
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
