@@ -1,13 +1,16 @@
 package modelo;
 
 import java.io.Serializable;
+import java.sql.Time;
 
 public class Viaje implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private int numViaje;
 	private String direccion;
-	private String horaPartida;
-	private String horaLlegada;
+	private Time horaPartida;
+	private Time horaLlegada;
 	
 	public Viaje() {
 		//Constructor vacio
@@ -16,8 +19,8 @@ public class Viaje implements Serializable {
 	public Viaje(
 				int numViaje,
 				String direccion,
-				String horaPartida,
-				String horaLlegada
+				Time horaPartida,
+				Time horaLlegada
 			) {
 		
 		this.numViaje = numViaje;
@@ -27,6 +30,18 @@ public class Viaje implements Serializable {
 		
 	}
 	
+	public Viaje(
+				String direccion,
+				Time horaPartida,
+				Time horaLlegada
+			) {
+		
+		this.direccion = direccion;
+		this.horaPartida = horaPartida;
+		this.horaLlegada = horaLlegada;
+		
+	}
+
 	public int getNumViaje() {
 		return numViaje;
 	}
@@ -42,21 +57,22 @@ public class Viaje implements Serializable {
 	public void setDireccion(String dir) {
 		this.direccion = dir;
 	}
-	
-	public String getHoraPartida() {
+
+	public Time getHoraPartida() {
 		return horaPartida;
 	}
-	
-	public void setHoraPartida(String hor) {
-		this.horaPartida = hor;
+
+	public void setHoraPartida(Time horaPartida) {
+		this.horaPartida = horaPartida;
 	}
-	
-	public String getHoraLlegada() {
+
+	public Time getHoraLlegada() {
 		return horaLlegada;
 	}
-	
-	public void setHoraLlegada(String hor) {
-		this.horaLlegada = hor;
+
+	public void setHoraLlegada(Time horaLlegada) {
+		this.horaLlegada = horaLlegada;
 	}
+
 	
 }
