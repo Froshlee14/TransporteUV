@@ -1,7 +1,6 @@
 package datos;
 
 import java.sql.*;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,8 @@ import modelo.ContactoEmergencia;
 
 public class ContactoEmergenciaDAO {
 	
-	public static final String selectSQL = "SELECT numContacto,nombre,apellidoPaterno,apellidoMaterno,direccion,telefono FROM contactoEmergencia WHERE numEmpleado=?";
+	public static final String selectSQL = "SELECT * FROM contactoEmergencia WHERE numEmpleado=?";
+	public static final String selectBuscaSQL = "SELECT * FROM contactoEmergencia WHERE numContacto=?";
 	public static final String insertSQL = "INSERT INTO contactoEmergencia (nombre,apellidoPaterno,apellidoMaterno,direccion,telefono,numEmpleado) VALUES (?,?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE contactoEmergencia SET nombre=?,apellidoPaterno=?,apellidoMaterno=?,direccion=?,telefono=?,numEmpleado=? WHERE numContacto=?";
 	public static final String deleteSQL = "DELETE FROM contactoEmergencia WHERE numContacto=?";
@@ -50,6 +50,43 @@ public class ContactoEmergenciaDAO {
 		}
 		
 		return contactosEmergencia;
+	}
+	
+	public ContactoEmergencia buscar(int num){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+        ContactoEmergencia contacto = null;
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(selectBuscaSQL);
+            
+            state.setInt(1,num);
+            
+			result = state.executeQuery();
+			
+			while(result.next()) {
+				int numContacto = result.getInt("numcontacto");
+				String nombre = result.getString("nombre");
+				String apellidoPaterno = result.getString("apellidoPaterno");
+				String apellidoMaterno = result.getString("apellidoMaterno");
+				String direccion = result.getString("direccion");
+				String telefono = result.getString("telefono");
+				int numEmpleado = result.getInt("numEmpleado");
+				
+				System.out.println("registro encontrado AutobusDAO");
+				contacto = new ContactoEmergencia(numContacto,nombre,apellidoPaterno,apellidoMaterno,direccion,telefono,numEmpleado);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return contacto;
 	}
 	
 	public int agregar(ContactoEmergencia contactoEmergencia) {
@@ -94,10 +131,10 @@ public class ContactoEmergenciaDAO {
 			state.setString(1,contactoEmergencia.getNombre());
 			state.setString(2,contactoEmergencia.getApellidoPaterno());
 			state.setString(3,contactoEmergencia.getApellidoMaterno());
-			state.setString(6,contactoEmergencia.getDireccion());
-			state.setString(7,contactoEmergencia.getTelefono());
-			state.setInt(8,contactoEmergencia.getNumEmpleado());
-			state.setInt(9,contactoEmergencia.getNumContacto());
+			state.setString(4,contactoEmergencia.getDireccion());
+			state.setString(5,contactoEmergencia.getTelefono());
+			state.setInt(6,contactoEmergencia.getNumEmpleado());
+			state.setInt(7,contactoEmergencia.getNumContacto());
 			
 			registros = state.executeUpdate();
 			if(registros>0)
