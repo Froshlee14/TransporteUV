@@ -20,7 +20,7 @@ CREATE TABLE contactoEmergencia(
 	direccion varchar(120),
 	telefono varchar(10),
 	numEmpleado int,
-	PRIMARY KEY(numEmpleado),
+	PRIMARY KEY(numContacto),
 	FOREIGN KEY (numEmpleado) REFERENCES conductor(numEmpleado) ON DELETE CASCADE
 );
 
