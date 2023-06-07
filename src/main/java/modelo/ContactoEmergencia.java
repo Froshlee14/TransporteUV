@@ -54,6 +54,22 @@ public class ContactoEmergencia implements Serializable {
         this.telefono = telefono;
 	}
 
+	public ContactoEmergencia(
+						String nombre,
+						String apellidoPaterno,
+						String apellidoMaterno,
+						String direccion,
+						String telefono,
+						int numEmpleado
+					) {
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.numEmpleado = numEmpleado;
+	}
+
 	public int getNumContacto() {
         return numContacto;
     }
