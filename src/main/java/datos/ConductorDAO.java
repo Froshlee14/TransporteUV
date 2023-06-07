@@ -54,36 +54,6 @@ public class ConductorDAO{
 		return conductores;
 	}
 	
-	public String seleccionarNombre(int numEmpleado){
-        Connection conn = null;
-        PreparedStatement state = null;
-        ResultSet result = null;
-		String nombre = "Usuario";
-		
-		try {
-            conn = Conexion.getConnection();
-            state = conn.prepareStatement(selectNombreSQL);
-            
-            state.setInt(1,numEmpleado);
-            
-			result = state.executeQuery();
-			if(result.next()) {
-				System.out.println("Registro encontrado ConductorDAO");
-				nombre = result.getString("nombre");
-				
-			}
-			
-			Conexion.close(state);
-			Conexion.close(conn);
-			
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		return nombre;
-	}
-	
 	public Conductor buscar(int num){
         Connection conn = null;
         PreparedStatement state = null;

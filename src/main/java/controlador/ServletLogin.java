@@ -5,6 +5,7 @@ import javax.servlet.http.*;
 import java.io.*;
 import javax.servlet.*;
 
+import modelo.Conductor;
 import modelo.Usuario;
 import datos.UsuarioDAO;
 import datos.ConductorDAO;
@@ -38,9 +39,10 @@ public class ServletLogin extends HttpServlet{
                     //Si se trata de un empleado obtenemos su nombre  para saludarlo en el jsp
                 	
                 	ConductorDAO condao = new ConductorDAO();
-                	String nomEmpleado = condao.seleccionarNombre(usuario.getNumEmpleado());
-                	
-                	request.setAttribute("nombreEmpleado",nomEmpleado);
+                	Conductor conductor = condao.buscar(usuario.getNumEmpleado());
+                	String nombreEmpleado = conductor.getNombre();
+ 	
+                	request.setAttribute("nombreEmpleado",nombreEmpleado);
                 	
                     RequestDispatcher dispatcher = request.getRequestDispatcher("indexEmpleado.jsp");
                     dispatcher.forward(request, response);

@@ -1,13 +1,25 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="modelo.ContactoEmergencia"%>
+<%@ page import="modelo.Conductor"%>
 <!DOCTYPE html>
 
 <html>
 
 <head>
-<title>TransporteUV</title>
-<link rel="stylesheet" href="https://unpkg.com/98.css">
+	<title>TransporteUV</title>
+	<link rel="stylesheet" href="https://unpkg.com/98.css">
+
+  	<style>
+    	tr:hover {
+      		background-color: #c3c3c3;
+      		cursor: pointer;
+    	}
+    	tr.selected {
+      		background-color: #409ed0;
+    	}
+  	</style>
+  	
 </head>
 
 <body>
@@ -17,7 +29,7 @@
 	<div class="window" style="display: inline-block;">
 
 		<div class="title-bar">
-			<div class="title-bar-text">listaContactos.jsp</div>
+			<div class="title-bar-text">contactoLista.jsp</div>
 			<div class="title-bar-controls">
 				<button aria-label="Close"></button>
 			</div>
@@ -25,8 +37,8 @@
 
 		<div class="window-body"  style="margin: 15px;">
 			
-			<% String conductor = (String) request.getAttribute("nombreEmpleado"); %>
-			<p> Contactos de emergencia de <%out.print(conductor);%> <p>
+			<% Conductor conductor = (Conductor) request.getAttribute("conductor"); %>
+			<p> Contactos de emergencia de <%out.print(conductor.getNombre());%> <p>
 			
 			<div class="sunken-panel">
 				<table class="interactive">
@@ -48,7 +60,7 @@
 					if (lista != null) {
 						for (ContactoEmergencia contacto : lista) {
 					%>
-					<tr>
+					<tr onclick="seleccionarContacto(<%= contacto.getNumContacto() %>,this)">
 						<td><%out.print(contacto.getNumContacto());%></td>
 						<td><%out.print(contacto.getNombre());%></td>
 						<td><%out.print(contacto.getApellidoPaterno());%></td>
@@ -70,18 +82,47 @@
 			
 			<div class="field-row" style="margin-top: 15px;  justify-content: flex-end;">
 				<form method="get">
-					<label for="usuario">No. de contacto:</label>
-			    	<input id="usuario" type="number" name="numEmpleado" value="">    		
+					<label for="numContacto"> </label>
+			    	<input id="numContacto" type="hidden" name="numContacto" readonly>    		
  
- 					<input type="submit" name="updateData" value="Modificar datos">
+ 					<input id="modificarBtn" type="submit" formaction="ServletContactoBuscar" value="Modificar contacto" disabled>
+					<input id="borrarBtn" type="submit" formaction="ServletContactoBorrar" value="Borrar contacto" disabled>
     			</form>
-    			<form action="coductorNuevo.jsp">
+    			<form action="contactoAgregar.jsp">
+    				<input type="hidden" name="numEmpleado" value="<%= conductor.getNombre() %>">
 					<input type="submit" value="Nuevo contacto">
     			</form>
 			</div>
 			
 		</div>
 	</div>
+	
+	<script>
+		//Evitemos la flojera del usuario para escribir el numero del contacto
+  		function seleccionarContacto(num,row) {
+  			
+			//Movemos el numero de contacto al input oculto.
+	  		var inputNumContacto = document.getElementById("numContacto");
+	  		inputNumContacto.value = num;
+	  		
+	  		//Asimismo los botones estaran desactivados mientras el input este vacio
+	  	 	var modificarBtn = document.getElementById("modificarBtn");
+	  	  	modificarBtn.disabled = false;
+	  	 	
+	  	  	var borrarsBtn = document.getElementById("borrarBtn");
+	  	  	borrarsBtn.disabled = false;
+	  	 	
+	        var filas = document.getElementsByTagName("tr");
+	        
+	        //Quito la propiedad "selected" al resto de columnas
+	        for (var i = 0; i < filas.length; i++) {
+	          filas[i].classList.remove("selected");
+	        }
+	        
+	        //Cambio el color la columna seleccionada
+	       	row.classList.add("selected");
+  		}
+	</script>
 
 </body>
 

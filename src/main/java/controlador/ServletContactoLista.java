@@ -9,6 +9,7 @@ import java.util.*;
 
 import modelo.ContactoEmergencia;
 import datos.ContactoEmergenciaDAO;
+import modelo.Conductor;
 import datos.ConductorDAO;
 
 @WebServlet("/ServletContactoLista")
@@ -26,9 +27,8 @@ public class ServletContactoLista extends HttpServlet{
         List<ContactoEmergencia> lista = condao.selecionar(numEmpleado);
         
       	ConductorDAO conductordao = new ConductorDAO();
-    	String nomEmpleado = conductordao.seleccionarNombre(numEmpleado);
-    	System.out.println(nomEmpleado);
-    	request.setAttribute("nombreEmpleado",nomEmpleado);
+    	Conductor conductor = conductordao.buscar(numEmpleado);
+    	request.setAttribute("conductor",conductor);
             
         request.setAttribute("lista",lista);
         RequestDispatcher dispatcher = request.getRequestDispatcher("contactoLista.jsp");
