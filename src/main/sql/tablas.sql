@@ -64,18 +64,20 @@ CREATE TABLE viaje(
 	PRIMARY KEY(numViaje)
 );
 
-CREATE TABLE autobusViaje(
-	numUnidad int,
-	numViaje int,
-	FOREIGN KEY (numUnidad) REFERENCES autobus(numUnidad) ON DELETE CASCADE,
-	FOREIGN KEY (numViaje) REFERENCES viaje(numViaje) ON DELETE CASCADE
-);
 
 CREATE TABLE autobusRuta(
 	numUnidad int,
 	numRuta int,
 	FOREIGN KEY (numUnidad) REFERENCES autobus(numUnidad) ON DELETE CASCADE,
 	FOREIGN KEY (numRuta) REFERENCES ruta(numRuta) ON DELETE CASCADE
+);
+
+
+CREATE TABLE rutaViaje(
+	numRuta int,
+	numViaje int,
+	FOREIGN KEY (numRuta) REFERENCES ruta(numRuta) ON DELETE CASCADE,
+	FOREIGN KEY (numViaje) REFERENCES viaje(numViaje) ON DELETE CASCADE
 );
 
 CREATE TABLE usuarios(
@@ -90,8 +92,9 @@ CREATE TABLE usuarios(
 --se borra de forma descendente
 --por las llaves foraneas
 /*
-DROP TABLE autobusRuta;
+DROP TABLE rutaViaje;
 DROP TABLE autobusViaje;
+DROP TABLE autobusRuta;
 DROP TABLE viaje;
 DROP TABLE ruta;
 DROP TABLE conductorAutobus;

@@ -53,21 +53,14 @@ select * from ruta;
 
 INSERT INTO viaje (direccion,horaPartida,horaLlegada) VALUES
 	('Veracruz-Xalapa','10:30:00','13:20:00'),
+	('Xalapa-Veracruz','14:00:00','15:10:00'),
 	('Veracruz-Catemaco','09:00:00','13:00:00'),
+	('Catemaco-Veracruz','13:30:00','17:20:00'),
 	('Veracruz-Puebla','12:00:00','18:30:00'),
 	('San Andrés Tuxtla-Veracruz','06:00:00','09:45:00'),
 	('Puebla-Veracruz','05:25:00','12:00:00')
 ;
 select * from viaje;
-
-INSERT INTO autobusViaje (numUnidad,numViaje) VALUES
-	(1,5),
-	(2,4),
-	(3,3),
-	(4,2),
-	(5,1)
-;
-select * from autobusViaje;
 
 INSERT INTO autobusRuta (numUnidad,numRuta) VALUES
 	(1,4),
@@ -78,6 +71,17 @@ INSERT INTO autobusRuta (numUnidad,numRuta) VALUES
 ;
 select * from autobusRuta;
 
+INSERT INTO rutaViaje (numRuta,numViaje) VALUES
+	(1,1),
+	(1,2),
+	(2,3),
+	(2,4),
+	(3,6),
+	(4,5),
+	(4,7)
+;
+select * from rutaViaje;
+
 INSERT INTO usuarios (usuario,passwrd,numEmpleado, rol) VALUES
 	('JuanitoG','juan01',1,'empleado'),
 	('AnaTorre','anit45',2,'empleado'),
@@ -86,3 +90,4 @@ INSERT INTO usuarios (usuario,passwrd,numEmpleado, rol) VALUES
 	('LuisHern','luis22',5,'empleado'),
 	('Admin','lennon',0,'admin')
 ;
+select * from usuarios;
