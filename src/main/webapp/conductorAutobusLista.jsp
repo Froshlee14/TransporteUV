@@ -30,16 +30,17 @@
 		<div class="title-bar">
 			<div class="title-bar-text">conductorAutobusLista.jsp</div>
 			<div class="title-bar-controls">
-				<button aria-label="Close"></button>
+				<form action="ServletConductorLista">
+					<button aria-label="Close"></button>
+				</form>
 			</div>
 		</div>
 
 		<div class="window-body"  style="margin: 15px;">
 
-
 			<p> Autobuses asignados </p>
 			<div class="sunken-panel">
-				<table >
+				<table style="width: 100%;" >
 
 					<thead>
 						<tr>
@@ -87,22 +88,21 @@
 
 				</table>
 			</div>
-			
-			
-			<div class="field-row" style="margin-top: 15px; margin-bottom: 15px;  justify-content: flex-end;">
+
+			<div class="field-row" style="margin-top: 15px; justify-content: flex-end;">
 				<form method="get">
-					<label for="numUnidad"> </label>
-			    	<input id="numUnidad" type="text" name="numUnidad" readonly>    		
- 
- 					<input id="asignarBtn" type="submit" formaction="ServletConductorAutobusAgregar" value="Asignar autobus" disabled>
+					<input id="numUnidadQuitar" type="hidden" name="numUnidadQuitar" readonly>
+					<input id="numEmpleado" type="hidden" name="numEmpleado" value="<%=request.getAttribute("numEmpleado")%>" readonly>
+
 					<input id="quitarBtn" type="submit" formaction="ServletConductorAutobusBorrar" value="Quitar autobus" disabled>
-    			</form>
+				</form>
 			</div>
-			
+
+
 			<p> Autobuses sin asignar </p>
 			
 			<div class="sunken-panel">
-				<table >
+				<table style="width: 100%;" >
 
 					<thead>
 						<tr>
@@ -150,7 +150,16 @@
 
 				</table>
 			</div>
-			
+
+			<div class="field-row" style="margin-top: 15px; justify-content: flex-end;">
+				<form method="post">
+					<input id="numUnidadAgregar" type="hidden" name="numUnidadAgregar" readonly>
+					<input id="numEmpleado" type="hidden" name="numEmpleado" value="<%=request.getAttribute("numEmpleado")%>" readonly>
+
+					<input id="asignarBtn" type="submit" formaction="ServletConductorAutobusAgregar" value="Asignar autobus" disabled>
+				</form>
+			</div>
+
 		</div>
 	</div>
 	
@@ -159,17 +168,19 @@
   		function seleccionarAutobus(num,row,agregar) {
   			
 			//Movemos el numero de empleado al input oculto.
-	  		var inputNumUnidad = document.getElementById("numUnidad");
-	  		inputNumUnidad.value = num;
+	  		var inputNumUnidadQuitar = document.getElementById("numUnidadQuitar");
+	  		var inputNumUnidadAgregar = document.getElementById("numUnidadAgregar");
 	  		
   	 		var asignarBtn = document.getElementById("asignarBtn");
   	  		var quitarBtn = document.getElementById("quitarBtn");
   	 		
 	  		if (agregar){
+		  		inputNumUnidadAgregar.value = num;
 	  	 		asignarBtn.disabled = false;
 	  	 		quitarBtn.disabled = true;
 	  		}
 	  		else{
+		  		inputNumUnidadQuitar.value = num;
 	  			asignarBtn.disabled = true;
 	  	 		quitarBtn.disabled = false;
 	  		}
