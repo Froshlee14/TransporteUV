@@ -12,7 +12,7 @@ public class ConductorAutobusDAO {
 	public static final String selectSQL = "SELECT * FROM conductorAutobus";
 	public static final String insertSQL = "INSERT INTO conductorAutobus (numEmpleado,numUnidad) VALUES (?,?)";
 	public static final String updateSQL = "UPDATE conductorAutobus SET numUnidad=?, WHERE numEmpleado=?";
-	public static final String deleteSQL = "DELETE FROM conductorAutobus WHERE numEmpleado=?";
+	public static final String deleteSQL = "DELETE FROM conductorAutobus WHERE numUnidad=?";
 	
 	public List<ConductorAutobus> selecionar(){
         Connection conn = null;
@@ -70,7 +70,6 @@ public class ConductorAutobusDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			ConductorAutobus conductorAutobusNvo = new ConductorAutobus();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -96,7 +95,6 @@ public class ConductorAutobusDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			ConductorAutobus conductorAutobusMod = new ConductorAutobus();
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -104,7 +102,7 @@ public class ConductorAutobusDAO {
 		return registros;
 	}
 	
-	public int borrar(ConductorAutobus conductorAutobus) {
+	public int borrar(int num) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -113,7 +111,7 @@ public class ConductorAutobusDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,conductorAutobus.getNumEmpleado());
+			state.setInt(1,num);
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
@@ -122,7 +120,6 @@ public class ConductorAutobusDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			ConductorAutobus conductorAutobusDelete = new ConductorAutobus();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
