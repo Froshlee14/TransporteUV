@@ -30,9 +30,11 @@ public class ServletConductorAutobusLista extends HttpServlet{
 		if (autobusesNoAsignados.isEmpty()) {
           	System.out.println("Lista de no asignados vacia ");
         }
-		
+
+        request.setAttribute("numEmpleado",numEmpleado);
         request.setAttribute("autobusesAsignados",autobusesAsignados);
         request.setAttribute("autobusesNoAsignados",autobusesNoAsignados);
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("conductorAutobusLista.jsp");
         dispatcher.forward(request, response);
 
