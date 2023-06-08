@@ -8,9 +8,10 @@ import modelo.Autobus;
 
 public class AutobusDAO {
 	
-	public static final String selectSQL = "SELECT * FROM autobus ";
-	public static final String selectBuscaSQL = "SELECT * FROM autobus WHERE numUnidad=?";
-	public static final String selectJoinSQL = "SELECT autobus.numUnidad, autobus.numSerie, fabricante.nombreFabricante as fabricante, autobus.yearFabricacion, autobus.capacidad, autobus.status FROM autobus JOIN fabricante ON autobus.idFabricante = fabricante.idFabricante;";
+	public static final String selectSQL = "SELECT autobus.numUnidad, autobus.numSerie, fabricante.nombreFabricante as fabricante, autobus.yearFabricacion, autobus.capacidad, autobus.status FROM autobus JOIN fabricante ON autobus.idFabricante = fabricante.idFabricante;";
+	public static final String selectEmpleadoSQL = "SELECT autobus.numUnidad, autobus.numSerie, fabricante.nombreFabricante as fabricante, autobus.yearFabricacion, autobus.capacidad, autobus.status FROM autobus JOIN conductorAutobus ON autobus.numUnidad = conductorAutobus.numUnidad JOIN conductor ON conductorAutobus.numEmpleado = conductor.numEmpleado JOIN fabricante ON autobus.idFabricante = fabricante.idFabricante WHERE conductor.numEmpleado=?";
+	public static final String selectNoAsignadosSQL = "SELECT autobus.numUnidad, autobus.numSerie, fabricante.nombreFabricante as fabricante, autobus.yearFabricacion, autobus.capacidad, autobus.status FROM autobus JOIN fabricante ON autobus.idFabricante = fabricante.idFabricante WHERE autobus.numUnidad NOT IN (SELECT numUnidad FROM conductorAutobus)";
+	public static final String selectBuscaSQL = "SELECT * FROM autobus WHERE numUnidad=?";	
 	public static final String insertSQL = "INSERT INTO autobus (numSerie,idFabricante,yearFabricacion,capacidad,status) VALUES (?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE autobus SET numSerie=?,idFabricante=?,yearFabricacion=?,capacidad=?,status=? WHERE numUnidad=?";
 	public static final String deleteSQL = "DELETE FROM autobus WHERE numUnidad=?";
@@ -31,12 +32,12 @@ public class AutobusDAO {
 			while(result.next()) {
 				int numUnidad = result.getInt("numUnidad");
 				String numSerie = result.getString("numSerie");
-				int idFabricante = result.getInt("idFabricante");
+				String fabricante = result.getString("fabricante");
 				int yearFabricacion = result.getInt("yearFabricacion");
 				int capacidad = result.getInt("capacidad");
 				boolean status = result.getBoolean("status");
 				
-				con = new Autobus(numUnidad,numSerie,idFabricante,yearFabricacion,capacidad,status);
+				con = new Autobus(numUnidad,numSerie,fabricante,yearFabricacion,capacidad,status);
 				autobuses.add(con);
 			}
 			Conexion.close(result);
@@ -50,7 +51,45 @@ public class AutobusDAO {
 		return autobuses;
 	}
 	
-	public List<Autobus> selecionarJoin(){
+	public List<Autobus> seleccionarPorEmpleado(int num){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+		Autobus con = null;
+		
+		List<Autobus> autobuses = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(selectEmpleadoSQL);
+            
+            state.setInt(1,num);
+            
+			result = state.executeQuery();
+			
+			while(result.next()) {
+				int numUnidad = result.getInt("numUnidad");
+				String numSerie = result.getString("numSerie");
+				String fabricante = result.getString("fabricante");
+				int yearFabricacion = result.getInt("yearFabricacion");
+				int capacidad = result.getInt("capacidad");
+				boolean status = result.getBoolean("status");
+				
+				con = new Autobus(numUnidad,numSerie,fabricante,yearFabricacion,capacidad,status);
+				autobuses.add(con);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return autobuses;
+	}
+	
+	public List<Autobus> seleccionarNoAsignados(){
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;
@@ -61,7 +100,7 @@ public class AutobusDAO {
 		try {
             conn = Conexion.getConnection();
             state = conn.createStatement();
-            result = state.executeQuery(selectJoinSQL);
+            result = state.executeQuery(selectNoAsignadosSQL);
 			
 			while(result.next()) {
 				int numUnidad = result.getInt("numUnidad");

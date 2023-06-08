@@ -18,17 +18,19 @@ public class ServletAutobusLista extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		AutobusDAO adao = new AutobusDAO();
-        List<Autobus> lista = adao.selecionarJoin();
-        if (lista.isEmpty()) {
+		List<Autobus> lista = adao.selecionar();
+		
+		if (lista.isEmpty()) {
           	System.out.println("Lista vacia ");
-        }
-        else {
-        	System.out.println("Aqui hay datos ");
         }
             
         request.setAttribute("lista",lista);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("autobusLista.jsp");
         dispatcher.forward(request, response);
+
+        
+        
     }
 
 }
