@@ -11,7 +11,7 @@ public class RutaViajeDAO {
 	public static final String selectSQL = "SELECT * FROM rutaViaje";
 	public static final String insertSQL = "INSERT INTO rutaViaje (numRuta,numViaje) VALUES (?,?)";
 	public static final String updateSQL = "UPDATE rutaViaje SET numRuta=?, WHERE numRuta=?";
-	public static final String deleteSQL = "DELETE FROM rutaViaje WHERE nmuRuta=?";
+	public static final String deleteSQL = "DELETE FROM rutaViaje WHERE numViaje=?";
 	
 	public List<RutaViaje> selecionar(){
         Connection conn = null;
