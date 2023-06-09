@@ -78,6 +78,7 @@
 					<label for="numRuta"> </label>
 			    	<input id="numRuta" type="hidden" name="numRuta" readonly>    		
  
+  					<input id="verViajessBtn" type="submit" formaction="ServletRutaViajeLista" value="Viajes asignados" disabled>
  					<input id="modificarBtn" type="submit" formaction="ServletRutaBuscar" value="Modificar datos" disabled>
 					<input id="borrarBtn" type="submit" formaction="ServletRutaBorrar" value="Borrar ruta" disabled>
     			</form>
@@ -98,6 +99,9 @@
 	  		inputNumRuta.value = num;
 	  		
 	  		//Asimismo los botones estaran desactivados mientras el input este vacio
+	  	 	var verViajessBtn = document.getElementById("verViajessBtn");
+	  	 	verViajessBtn.disabled = false;
+	  		
 	  	 	var modificarBtn = document.getElementById("modificarBtn");
 	  	  	modificarBtn.disabled = false;
 	  	 	
