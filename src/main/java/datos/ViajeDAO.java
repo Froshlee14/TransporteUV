@@ -11,6 +11,15 @@ public class ViajeDAO {
 	
 	public static final String selectSQL = "SELECT * FROM viaje";
 	public static final String selectPorRutaSQL = "SELECT viaje.numViaje, viaje.direccion, viaje.horaPartida, viaje.horaLlegada FROM viaje JOIN rutaViaje ON viaje.numViaje = rutaViaje.numViaje JOIN ruta ON rutaViaje.numRuta = ruta.numRuta WHERE ruta.numRuta=?";
+	public static final String selectPorEmpleadoSQL = "SELECT viaje.numViaje, viaje.direccion, viaje.horaPartida, viaje.horaLlegada,ruta.descripcion as ruta, autobus.numUnidad as autobus\r\n"
+			+ "FROM viaje JOIN rutaViaje ON viaje.numViaje = rutaViaje.numViaje \r\n"
+			+ "JOIN ruta ON rutaViaje.numRuta = ruta.numRuta \r\n"
+			+ "JOIN autobusRuta ON ruta.numRuta = autobusRuta.numRuta \r\n"
+			+ "JOIN autobus ON autobusRuta.numUnidad = autobus.numUnidad\r\n"
+			+ "JOIN conductorAutobus ON autobus.numUnidad = conductorAutobus.numUnidad\r\n"
+			+ "JOIN conductor ON conductorAutobus.numEmpleado = conductor.numEmpleado\r\n"
+			+ "WHERE conductor.numEmpleado=?;";
+
 	public static final String selectNoAsignadosSQL = "SELECT viaje.numViaje, viaje.direccion, viaje.horaPartida, viaje.horaLlegada FROM viaje LEFT JOIN rutaViaje ON viaje.numViaje = rutaViaje.numViaje WHERE rutaViaje.numViaje IS NULL;";
 	public static final String selectBuscaSQL = "SELECT * FROM viaje WHERE numViaje=?";
 	public static final String insertSQL = "INSERT INTO viaje (direccion,horaPartida,horaLlegada) VALUES (?,?,?)";
@@ -74,6 +83,45 @@ public class ViajeDAO {
 				Time horaLlegada = result.getTime("horaLlegada");
 				
 				ru = new Viaje(numViaje,direccion,horaPartida,horaLlegada);
+				viajes.add(ru);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return viajes;
+	}
+	
+	public List<Viaje> selecionarPorEmpleado(int num){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+        Viaje ru = null;
+		
+		List<Viaje> viajes = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            
+            state = conn.prepareStatement(selectPorEmpleadoSQL);
+            
+            state.setInt(1,num);
+            
+			result = state.executeQuery();
+			
+			while(result.next()) {
+				int numViaje = result.getInt("numViaje");
+				String direccion = result.getString("direccion");
+				Time horaPartida = result.getTime("horaPartida");
+				Time horaLlegada = result.getTime("horaLlegada");
+				String ruta = result.getString("ruta");
+				int numAutobus = result.getInt("autobus");
+				
+				ru = new Viaje(numViaje,direccion,horaPartida,horaLlegada,ruta,numAutobus);
 				viajes.add(ru);
 			}
 			Conexion.close(result);
