@@ -77,9 +77,8 @@
 			
 			<div class="field-row" style="margin-top: 15px;  justify-content: flex-end;">
 				<form method="get">
-					<label for="numViaje"> </label>
 			    	<input id="numViajeQuitar" type="hidden" name="numViajeQuitar" readonly>
-			    	 <input id="numRuta" type="hidden" name="numRuta" value="<%=request.getAttribute("numRuta")%>" readonly>   	
+			    	<input id="numRuta" type="hidden" name="numRuta" value="<%=request.getAttribute("numRuta")%>" readonly>   	
 			    	
  
 					<input id="quitarBtn" type="submit" formaction="ServletRutaViajeBorrar" value="Quitar viaje" disabled>
@@ -126,8 +125,7 @@
 			</div>
 			
 			<div class="field-row" style="margin-top: 15px;  justify-content: flex-end;">
-				<form method="get">
-					<label for="numViaje"> </label>
+				<form method="post">
 			    	<input id="numViajeAgregar" type="hidden" name="numViajeAgregar" readonly>    		
  					<input id="numRuta" type="hidden" name="numRuta" value="<%=request.getAttribute("numRuta")%>" readonly>   	
  
