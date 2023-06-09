@@ -17,7 +17,7 @@
       	<%
 			Usuario usuario = (Usuario) request.getAttribute("usuario");
         %>
-        <div class="window" style="width: 200px">
+        <div class="window" style="width: 300px">
         
           	<div class="title-bar">
     			<div class="title-bar-text">Menu de administrador.jsp</div>
@@ -28,42 +28,43 @@
    				</div>
   			</div>
 
-        	<div class="window-body">
-            	<p>Bienvenido a TransporteUV </p>
-            	
-            	<fieldset > <legend> ¿Que accion quieres realizar?  </legend>
-            
-            	<div class="field-row-stacked">
-            	
-            	<form action="ServletConductorLista" method="get">
-        			<input type="submit" value="Administrar conductores" style="width: 100%">
-    			</form>
-    		
-    			<form action="ServletAutobusLista" method="get">
-    				<input type="hidden" name="rol" value="administrador">
-        			<input type="submit" value="Administrar autobuses" style="width: 100%">
-    			</form>
-    		
-    			<form action="ServletViajeLista" method="get">
-    			    <input type="hidden" name="rol" value="administrador">
-        			<input type="submit" value="Administrar viajes" style="width: 100%">
-    			</form>
-    			
-    			<form action="ServletRutaLista" method="get">
-    				<input type="hidden" name="rol" value="administrador">
-        			<input type="submit" value="Administrar rutas" style="width: 100%">
-    			</form>
-    			
-    			</div>
-    			
-    			</fieldset>
-    			
-<!--     			<form action="ServletUsuarioModificar" method="get"> -->
-<!--         			<input type="submit" name="updateData" value="Cambiar contraseña" style="width: 100%"> -->
-<!--     			</form> -->
-			</div>
-			
-    	</div>
+		<div class="window-body">
+			<p>Bienvenido a TransporteUV</p>
+
+			<fieldset>
+				<legend> ¿Que accion quieres realizar? </legend>
+
+				<div class="field-row-stacked">
+
+					<form action="ServletConductorLista" method="get">
+						<input type="submit" value="Administrar conductores" style="width: 100%">
+					</form>
+
+					<form action="ServletAutobusLista" method="get">
+						<input type="hidden" name="rol" value="administrador">
+						<input type="submit" value="Administrar autobuses" style="width: 100%">
+					</form>
+
+					<form action="ServletViajeLista" method="get">
+						<input type="hidden" name="rol" value="administrador">
+						<input type="submit" value="Administrar viajes" style="width: 100%">
+					</form>
+
+					<form action="ServletRutaLista" method="get">
+						<input type="hidden" name="rol" value="administrador">
+						<input type="submit" value="Administrar rutas" style="width: 100%">
+					</form>
+
+				</div>
+
+			</fieldset>
+
+			<!--     			<form action="ServletUsuarioModificar" method="get"> -->
+			<!--         			<input type="submit" name="updateData" value="Cambiar contraseña" style="width: 100%"> -->
+			<!--     			</form> -->
+		</div>
+
+	</div>
 	</body>
 	
 </html>

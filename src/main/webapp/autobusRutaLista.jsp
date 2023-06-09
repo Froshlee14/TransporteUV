@@ -78,8 +78,8 @@
 			<div class="field-row" style="margin-top: 15px;  justify-content: flex-end;">
 				<form method="get">
 			    	<input id="numRutaQuitar" type="hidden" name="numRutaQuitar" readonly> 
-			    	<input id="numUnidad" type="hidden" name="numUnidad" value="<%=request.getAttribute("numUnidad")%>" readonly>   		
- 
+			    	<input id="numUnidad" type="hidden" name="numUnidad" value="<%=request.getAttribute("numUnidad")%>" readonly>
+
 					<input id="quitarBtn" type="submit" formaction="ServletAutobusRutaBorrar" value="Quitar ruta" disabled>
     			</form>
 			</div>
