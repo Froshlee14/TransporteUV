@@ -48,14 +48,23 @@ public class ServletLogin extends HttpServlet{
                     dispatcher.forward(request, response);
                 }
                 else {
-                    // El rol no coincide con ningún valor esperado
+                	request.setAttribute("mensaje","No existe este rol");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                    dispatcher.forward(request, response);
                 } 
                 
+        	}
+        	else {
+            	request.setAttribute("mensaje","Contraseña invalida");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher.forward(request, response);
         	}
         	
         }
         else {
-        	//No se encontro al usuario en la base de datos
+        	request.setAttribute("mensaje","Usuario invalido");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request, response);
         }
             
         
