@@ -36,7 +36,7 @@
 					<fieldset > <legend>Informacion general</legend>
 					
 						<div class="field-row-stacked">
-			    			<input id="numRuta" type="hidden" name="numRuta" value="<%=ruta.getNumRuta()%>">    		
+			    			<input id="numRuta" type="hidden" name="numRuta" value="<%=ruta.getNumRuta()%>">
  						</div>
 						
 						<div class="field-row-stacked">

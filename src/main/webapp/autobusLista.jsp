@@ -91,8 +91,8 @@
 					<label for="numUnidad"> </label>
 			    	<input id="numUnidad" type="hidden" name="numUnidad" readonly>    		
  
+ 					<input id="verRutasBtn" type="submit" formaction="ServletAutobusRutaLista" value="Ver rutas" disabled>
  					<input id="modificarBtn" type="submit" formaction="ServletAutobusBuscar" value="Modificar datos" disabled>
-					<input id="verRutasBtn" type="submit" formaction="ServletRutasLista" value="Ver rutas" disabled>
 					<input id="borrarBtn" type="submit" formaction="ServletAutobusBorrar" value="Borrar autobus" disabled>
     			</form>
     			<form action="ServletAutobusPreparar">

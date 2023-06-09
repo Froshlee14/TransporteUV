@@ -28,7 +28,7 @@
 	<div class="window" style="display: inline-block;">
 
 		<div class="title-bar">
-			<div class="title-bar-text">listaConductores.jsp</div>
+			<div class="title-bar-text">conductorLista.jsp</div>
 			<div class="title-bar-controls">
 				<button aria-label="Close"></button>
 			</div>
@@ -97,9 +97,9 @@
 					<label for="usuario"> </label>
 			    	<input id="usuario" type="hidden" name="numEmpleado" readonly>    		
  
- 					<input id="modificarBtn" type="submit" formaction="ServletConductorBuscar" value="Modificar datos" disabled>
-					<input id="verContactosBtn" type="submit" formaction="ServletContactoLista" value="Ver contactos" disabled>
+ 					<input id="verContactosBtn" type="submit" formaction="ServletContactoLista" value="Ver contactos" disabled>
 					<input id="verAutobusesBtn" type="submit" formaction="ServletConductorAutobusLista" value="Ver autobuses" disabled>
+ 					<input id="modificarBtn" type="submit" formaction="ServletConductorBuscar" value="Modificar datos" disabled>
 					<input id="borrarBtn" type="submit" formaction="ServletConductorBorrar" value="Borrar conductor" disabled>
     			</form>
     			<form action="conductorAgregar.jsp">
@@ -108,6 +108,7 @@
 			</div>
 			
 		</div>
+		
 	</div>
 	
 	<script>
