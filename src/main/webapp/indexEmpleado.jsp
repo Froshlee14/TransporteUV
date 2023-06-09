@@ -29,23 +29,31 @@
 
         	<div class="window-body">
             	<p>Bienvenid@ <%out.print(nomEmpleado); %> </p>
-            	<p> ¿Que accion quieres realizar? </p>
-    		
-    			<form action="ServletAutobusLista" method="post">
-        			<input type="submit" name="updateData" value="Ver autobuses">
-    			</form>
-    		
-    			<form action="ServletCambiarPassword" method="post">
-        			<input type="submit" name="updateData" value="Ver viajes">
-    			</form>
-    			
-            	<form action="ServletActualizarConductor" method="post">
-        			<input type="submit" name="updateData" value="Actualizar información">
-    			</form>
-    		
-    			<form action="ServletCambiarPassword" method="post">
-        			<input type="submit" name="updateData" value="Cambiar contraseña">
-    			</form>
+
+				<fieldset>
+					<legend> ¿Que accion quieres realizar? </legend>
+
+				<!--     			<form action="ServletAutobusListaEmpleado" method="post"> -->
+				<!--         			<input type="submit" name="updateData" value="Ver autobuses"> -->
+				<!--     			</form> -->
+					<div class="field-row-stacked">
+
+					<form action="ServletViajeListaEmpleado" method="post">
+						<input type="submit" name="updateData" value="Ver mis viajes" style="width: 100%">
+					</form>
+
+					<form action="ServletConductorModificarEmpleado" method="post">
+						<input type="submit" name="updateData" value="Actualizar información" style="width: 100%">
+					</form>
+
+					<form action="ServletUsuarioModificar" method="post">
+						<input type="submit" name="updateData" value="Cambiar contraseña" style="width: 100%">
+					</form>
+					
+					</div>
+
+				</fieldset>
+
 			</div>
 			
     	</div>
