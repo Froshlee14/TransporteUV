@@ -32,9 +32,6 @@
 				<fieldset>
 					<legend> ¿Que accion quieres realizar? </legend>
 
-				<!--     			<form action="ServletAutobusListaEmpleado" method="post"> -->
-				<!--         			<input type="submit" name="updateData" value="Ver autobuses"> -->
-				<!--     			</form> -->
 					<div class="field-row-stacked">
 
 					<form action="ServletViajeListaEmpleado" method="get">
@@ -47,14 +44,9 @@
 						<input type="submit" value="Ver mis autobuses" style="width: 100%">
 					</form>
 
-					<form action="ServletConductorModificarEmpleado" method="get">
+					<form action="ServletConductorBuscarEmpleado" method="get">
 						<input type="hidden" name="numEmpleado" value="<%= conductor.getNumEmpleado() %>">
 						<input type="submit" value="Actualizar información" style="width: 100%">
-					</form>
-
-					<form action="ServletUsuarioModificar" method="get">
-						<input type="hidden" name="numEmpleado" value="<%= conductor.getNumEmpleado() %>">
-						<input type="submit" value="Cambiar contraseña" style="width: 100%">
 					</form>
 					
 					</div>
