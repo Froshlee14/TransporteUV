@@ -16,20 +16,17 @@ public class ServletAutobusLista extends HttpServlet{
 
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+		
 		AutobusDAO adao = new AutobusDAO();
 		List<Autobus> lista = adao.selecionar();
-		
+			
 		if (lista.isEmpty()) {
-          	System.out.println("Lista vacia ");
-        }
-            
-        request.setAttribute("lista",lista);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("autobusLista.jsp");
-        dispatcher.forward(request, response);
-
-        
+	         System.out.println("Lista vacia ");
+		}
+		
+		request.setAttribute("lista",lista);
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("autobusLista.jsp");
+	    dispatcher.forward(request, response);   
         
     }
 
