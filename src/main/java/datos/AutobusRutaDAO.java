@@ -11,7 +11,7 @@ public class AutobusRutaDAO {
 	public static final String selectSQL = "SELECT * FROM autobusRuta";
 	public static final String insertSQL = "INSERT INTO autobusRuta (numUnidad,numRuta) VALUES (?,?)";
 	public static final String updateSQL = "UPDATE autobusRuta SET numRuta=?, WHERE numUnidad=?";
-	public static final String deleteSQL = "DELETE FROM autobusRuta WHERE numUnidad=?";
+	public static final String deleteSQL = "DELETE FROM autobusRuta WHERE numRuta=?";
 	
 	public List<AutobusRuta> selecionar(){
         Connection conn = null;
@@ -69,7 +69,6 @@ public class AutobusRutaDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			AutobusRuta autobusRutaNvo = new AutobusRuta();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -95,7 +94,6 @@ public class AutobusRutaDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			AutobusRuta autobusRutaMod = new AutobusRuta();
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -103,7 +101,7 @@ public class AutobusRutaDAO {
 		return registros;
 	}
 	
-	public int borrar(AutobusRuta autobusRuta) {
+	public int borrar(int num) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -112,7 +110,7 @@ public class AutobusRutaDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,autobusRuta.getNumUnidad());
+			state.setInt(1,num);
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
@@ -121,7 +119,6 @@ public class AutobusRutaDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			AutobusRuta autobusRutaDelete = new AutobusRuta();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
