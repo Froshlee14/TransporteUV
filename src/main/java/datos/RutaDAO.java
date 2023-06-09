@@ -10,6 +10,8 @@ public class RutaDAO {
 	
 	
 	public static final String selectSQL = "SELECT * FROM ruta";
+	public static final String selectPorAutobusSQL = "SELECT ruta.numRuta, ruta.descripcion, ruta.destinoInicial, ruta.destinoFinal FROM ruta JOIN autobusRuta ON autobusRuta.numRuta = ruta.numRuta JOIN autobus ON autobusRuta.numUnidad = autobus.numUnidad WHERE autobus.numUnidad = ?";
+	public static final String selectNoAsignadasSQL = "SELECT ruta.numRuta, ruta.descripcion, ruta.destinoInicial, ruta.destinoFinal FROM ruta WHERE ruta.numRuta NOT IN (SELECT numRuta FROM autobusRuta)";
 	public static final String selectBuscaSQL = "SELECT * FROM ruta WHERE numRuta=?";
 	public static final String insertSQL = "INSERT INTO ruta (descripcion,destinoInicial,destinoFinal) VALUES (?,?,?)";
 	public static final String updateSQL = "UPDATE ruta SET descripcion=?,destinoInicial=?,destinoFinal=? WHERE numRuta=?";
@@ -27,6 +29,75 @@ public class RutaDAO {
             conn = Conexion.getConnection();
             state = conn.createStatement();
             result = state.executeQuery(selectSQL);
+			
+			while(result.next()) {
+				int numRuta = result.getInt("numRuta");
+				String descripcion = result.getString("descripcion");
+				String destinoInicial = result.getString("destinoInicial");
+				String destinoFinal = result.getString("destinoFinal");
+				
+				ru = new Ruta(numRuta,descripcion,destinoInicial,destinoFinal);
+				rutas.add(ru);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return rutas;
+	}
+	
+	public List<Ruta> selecionarPorAutobus(int num){
+        Connection conn = null;
+        PreparedStatement state = null;
+        ResultSet result = null;
+        Ruta ru = null;
+		
+		List<Ruta> rutas = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.prepareStatement(selectPorAutobusSQL);
+            
+            state.setInt(1,num);
+            
+			result = state.executeQuery();
+			
+			while(result.next()) {
+				int numRuta = result.getInt("numRuta");
+				String descripcion = result.getString("descripcion");
+				String destinoInicial = result.getString("destinoInicial");
+				String destinoFinal = result.getString("destinoFinal");
+				
+				ru = new Ruta(numRuta,descripcion,destinoInicial,destinoFinal);
+				rutas.add(ru);
+			}
+			Conexion.close(result);
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return rutas;
+	}
+	
+	public List<Ruta> selecionarNoAsignadas(){
+        Connection conn = null;
+        Statement state = null;
+        ResultSet result = null;
+        Ruta ru = null;
+		
+		List<Ruta> rutas = new ArrayList<>();
+		
+		try {
+            conn = Conexion.getConnection();
+            state = conn.createStatement();
+            result = state.executeQuery(selectNoAsignadasSQL);
 			
 			while(result.next()) {
 				int numRuta = result.getInt("numRuta");
