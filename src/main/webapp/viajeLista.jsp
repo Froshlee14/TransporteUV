@@ -44,7 +44,7 @@
 						
 							<th>No.de viaje</th>
 							<th>Direccion</th>
-							<th>Hora de parida</th>
+							<th>Hora de partida</th>
 							<th>Hora de llegada</th>
 							
 						</tr>

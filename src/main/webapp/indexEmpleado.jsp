@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="modelo.Usuario" %>
+<%@ page import="modelo.Conductor" %>
 <!DOCTYPE html>
 
 <html>
@@ -15,8 +15,7 @@
 	<jsp:useBean id="usuarios" class="modelo.Usuario" scope="request"/>
       	
       	<%
-      		String nomEmpleado = (String) request.getAttribute("nombreEmpleado");
-			Usuario usuario = (Usuario) request.getAttribute("usuario");
+			Conductor conductor = (Conductor) request.getAttribute("conductor");
         %>
         <div class="window" style="width: 300px">
         
@@ -28,7 +27,7 @@
   			</div>
 
         	<div class="window-body">
-            	<p>Bienvenid@ <%out.print(nomEmpleado); %> </p>
+            	<p>Bienvenid@ <% out.println(conductor.getNombre()); %> </p>
 
 				<fieldset>
 					<legend> ¿Que accion quieres realizar? </legend>
@@ -38,16 +37,24 @@
 				<!--     			</form> -->
 					<div class="field-row-stacked">
 
-					<form action="ServletViajeListaEmpleado" method="post">
-						<input type="submit" name="updateData" value="Ver mis viajes" style="width: 100%">
+					<form action="ServletViajeListaEmpleado" method="get">
+						<input type="hidden" name="numEmpleado" value="<%= conductor.getNumEmpleado() %>">
+						<input type="submit" value="Ver mis viajes" style="width: 100%">
+					</form>
+					
+					<form action="ServletAutobusListaEmpleado" method="get">
+						<input type="hidden" name="numEmpleado" value="<%= conductor.getNumEmpleado() %>">
+						<input type="submit" value="Ver mis autobuses" style="width: 100%">
 					</form>
 
-					<form action="ServletConductorModificarEmpleado" method="post">
-						<input type="submit" name="updateData" value="Actualizar información" style="width: 100%">
+					<form action="ServletConductorModificarEmpleado" method="get">
+						<input type="hidden" name="numEmpleado" value="<%= conductor.getNumEmpleado() %>">
+						<input type="submit" value="Actualizar información" style="width: 100%">
 					</form>
 
-					<form action="ServletUsuarioModificar" method="post">
-						<input type="submit" name="updateData" value="Cambiar contraseña" style="width: 100%">
+					<form action="ServletUsuarioModificar" method="get">
+						<input type="hidden" name="numEmpleado" value="<%= conductor.getNumEmpleado() %>">
+						<input type="submit" value="Cambiar contraseña" style="width: 100%">
 					</form>
 					
 					</div>
