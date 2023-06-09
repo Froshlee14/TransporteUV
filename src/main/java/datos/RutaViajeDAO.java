@@ -95,7 +95,7 @@ public class RutaViajeDAO {
 		return registros;
 	}
 	
-	public int borrar(RutaViaje rutaviaje) {
+	public int borrar(int num) {
 		Connection conn = null;
 		PreparedStatement state = null;
 		int registros = 0;
@@ -104,7 +104,7 @@ public class RutaViajeDAO {
 			conn = Conexion.getConnection();
 			state = conn.prepareStatement(deleteSQL);
 			
-			state.setInt(1,rutaviaje.getNumRuta());
+			state.setInt(1,num);
 			registros = state.executeUpdate();
 			
 			if(registros>0) {
