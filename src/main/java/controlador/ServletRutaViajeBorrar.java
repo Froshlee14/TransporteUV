@@ -16,7 +16,7 @@ private static final long serialVersionUID = 1L;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		int numViaje = Integer.parseInt(request.getParameter("numViajeQuitar"));
-		int numRuta = Integer.parseInt(request.getParameter("numUnidad"));
+		int numRuta = Integer.parseInt(request.getParameter("numRuta"));
 		
 		RutaViajeDAO rutaViajedao = new RutaViajeDAO();
 		rutaViajedao.borrar(numViaje);
