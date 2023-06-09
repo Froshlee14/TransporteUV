@@ -25,6 +25,8 @@
   			<div class="window-body">
 			<form action="ServletLogin" method="post">
 			
+				<div class="field-row-stacked">
+			
 				<div class="field-row-stacked" style="width: 100%">
 					<label for="usuario">Usuario:</label>
 			    	<input id="usuario" type="text" name="inputUsuario"> 
@@ -34,8 +36,17 @@
 			    	<label for="password">Contraseña:</label>
 			    	<input id="password" type="password" name="inputPassword"> 
 			    </div>
-			    <br>
+			    
+				<%
+				String mensaje = (String) request.getAttribute("mensaje");
+				if (mensaje != null && !mensaje.isEmpty()) {
+				%>
+    				<p><%= mensaje %></p>
+				<% } %>
+
         		<input type="submit" name="loginBoton" value="Iniciar Sesion">
+        		
+        		</div>
         		
     		</form>
     		</div>
