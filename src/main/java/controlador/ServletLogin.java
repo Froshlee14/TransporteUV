@@ -40,9 +40,8 @@ public class ServletLogin extends HttpServlet{
                 	
                 	ConductorDAO condao = new ConductorDAO();
                 	Conductor conductor = condao.buscar(usuario.getNumEmpleado());
-                	String nombreEmpleado = conductor.getNombre();
  	
-                	request.setAttribute("nombreEmpleado",nombreEmpleado);
+                	request.setAttribute("conductor",conductor);
                 	
                     RequestDispatcher dispatcher = request.getRequestDispatcher("indexEmpleado.jsp");
                     dispatcher.forward(request, response);
