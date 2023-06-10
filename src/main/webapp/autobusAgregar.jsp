@@ -20,7 +20,9 @@
 		<div class="title-bar">
 			<div class="title-bar-text">autobusAgregar.jsp</div>
 			<div class="title-bar-controls">
-				<button aria-label="Close"></button>
+				<form action="ServletAutobusLista">
+					<button aria-label="Close"></button>
+				</form>
 			</div>
 		</div>
 

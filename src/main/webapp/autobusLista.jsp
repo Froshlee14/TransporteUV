@@ -20,7 +20,9 @@
 		<div class="title-bar">
 			<div class="title-bar-text">autobusLista.jsp</div>
 			<div class="title-bar-controls">
-				<button aria-label="Close"></button>
+					<form action="indexAdmin.jsp">
+						<button aria-label="Close"></button>
+					</form>
 			</div>
 		</div>
 
