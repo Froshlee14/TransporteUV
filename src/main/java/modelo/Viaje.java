@@ -11,8 +11,10 @@ public class Viaje implements Serializable {
 	private String direccion;
 	private Time horaPartida;
 	private Time horaLlegada;
-	public String ruta;
-	public int numAutobus;
+	private String ruta;
+	private int numUnidad;
+	private String numSerie;
+	private String conductor;
 	
 	public Viaje() {
 		//Constructor vacio
@@ -50,7 +52,7 @@ public class Viaje implements Serializable {
 			Time horaPartida,
 			Time horaLlegada,
 			String ruta,
-			int numAutobus
+			int numUnidad
 			) {
 
 		this.numViaje = numViaje;
@@ -58,8 +60,36 @@ public class Viaje implements Serializable {
 		this.horaPartida = horaPartida;
 		this.horaLlegada = horaLlegada;
 		this.ruta = ruta;
-		this.numAutobus = numAutobus;
+		this.numUnidad = numUnidad;
 		
+	}
+
+	public Viaje(
+			int numViaje,
+			String direccion,
+			Time horaPartida,
+			Time horaLlegada,
+			String ruta,
+			int numUnidad,
+			String conductor
+			) {
+
+		this.numViaje = numViaje;
+		this.direccion = direccion;
+		this.horaPartida = horaPartida;
+		this.horaLlegada = horaLlegada;
+		this.ruta = ruta;
+		this.numUnidad = numUnidad;
+		this.conductor = conductor;
+		
+	}
+
+	public String getConductor() {
+		return conductor;
+	}
+
+	public void setConductor(String conductor) {
+		this.conductor = conductor;
 	}
 
 	public String getRuta() {
@@ -71,11 +101,11 @@ public class Viaje implements Serializable {
 	}
 
 	public int getNumAutobus() {
-		return numAutobus;
+		return numUnidad;
 	}
 
 	public void setNumAutobus(int numAutobus) {
-		this.numAutobus = numAutobus;
+		this.numUnidad = numAutobus;
 	}
 
 	public int getNumViaje() {
@@ -109,6 +139,5 @@ public class Viaje implements Serializable {
 	public void setHoraLlegada(Time horaLlegada) {
 		this.horaLlegada = horaLlegada;
 	}
-
 	
 }
