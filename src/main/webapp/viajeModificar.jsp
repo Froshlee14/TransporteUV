@@ -24,7 +24,9 @@
 		<div class="title-bar">
 			<div class="title-bar-text">viajeModificar.jsp</div>
 			<div class="title-bar-controls">
-				<button aria-label="Close"></button>
+				<form action="ServletViajeLista">
+					<button aria-label="Close"></button>
+				</form>
 			</div>
 		</div>
 
