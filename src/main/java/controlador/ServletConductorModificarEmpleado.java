@@ -44,7 +44,7 @@ public class ServletConductorModificarEmpleado extends HttpServlet{
 		
 		Conductor conductor = new Conductor(numEmpleado,nombre,apellidoPaterno,apellidoMaterno,birthday,direccion,telefono);
       	ConductorDAO condao = new ConductorDAO();
-        condao.modificar(conductor);
+        condao.modificar2(conductor);
         
 		String nomUsuario = request.getParameter("usuario");
 		String passwrd = request.getParameter("password");
