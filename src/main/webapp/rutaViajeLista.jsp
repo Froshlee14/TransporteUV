@@ -20,7 +20,9 @@
 		<div class="title-bar">
 			<div class="title-bar-text">rutaViajeLista.jsp</div>
 			<div class="title-bar-controls">
-				<button aria-label="Close"></button>
+				<form action="ServletRutaLista">
+					<button aria-label="Close"></button>
+				</form>
 			</div>
 		</div>
 
