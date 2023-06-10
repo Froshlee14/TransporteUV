@@ -2,7 +2,6 @@ package datos;
 
 import java.sql.*;
 
-import modelo.Conductor;
 import modelo.Usuario;
 
 public class UsuarioDAO {

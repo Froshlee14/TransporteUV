@@ -13,6 +13,7 @@ public class ConductorDAO{
 	public static final String selectBuscaSQL = "SELECT * FROM conductor WHERE numEmpleado=?";
 	public static final String insertSQL = "INSERT INTO conductor (nombre,apellidoPaterno,apellidoMaterno,birthday,fechaContrato,direccion,telefono,yearsExp) VALUES (?,?,?,?,?,?,?,?)";
 	public static final String updateSQL = "UPDATE conductor SET nombre=?,apellidoPaterno=?,apellidoMaterno=?,birthday=?,fechaContrato=?,direccion=?,telefono=?,yearsExp=?,status=? WHERE numEmpleado=?";
+	public static final String updateSQL2 = "UPDATE conductor SET nombre=?,apellidoPaterno=?,apellidoMaterno=?,birthday=?,direccion=?,telefono=? WHERE numEmpleado=?";
 	public static final String deleteSQL = "DELETE FROM conductor WHERE numEmpleado=?";
 	
 	public List<Conductor> selecionar(){
@@ -151,6 +152,36 @@ public class ConductorDAO{
 			state.setInt(8,conductor.getYearsExp());
 			state.setBoolean(9, conductor.getStatus());
 			state.setInt(10,conductor.getNumEmpleado());
+			
+			registros = state.executeUpdate();
+			if(registros>0)
+				System.out.println("Registro actualizado");
+			
+			Conexion.close(state);
+			Conexion.close(conn);
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return registros;
+	}
+	
+	public int modificar2(Conductor conductor) {
+		Connection conn = null;
+		PreparedStatement state = null;
+		int registros = 0;
+		
+		try {
+			conn = Conexion.getConnection();
+			state = conn.prepareStatement(updateSQL2);
+			
+			state.setString(1,conductor.getNombre());
+			state.setString(2,conductor.getApellidoPaterno());
+			state.setString(3,conductor.getApellidoMaterno());
+			state.setDate(4,(Date)conductor.getBirthday());
+			state.setString(5,conductor.getDireccion());
+			state.setString(6,conductor.getTelefono());
+			state.setInt(7,conductor.getNumEmpleado());
 			
 			registros = state.executeUpdate();
 			if(registros>0)

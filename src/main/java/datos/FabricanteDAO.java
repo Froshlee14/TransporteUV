@@ -62,7 +62,6 @@ public class FabricanteDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Fabricante fabricanteNvo = new Fabricante();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -88,7 +87,6 @@ public class FabricanteDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Fabricante fabricanteMod = new Fabricante();
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -114,7 +112,6 @@ public class FabricanteDAO {
 			
 			Conexion.close(state);
 			Conexion.close(conn);
-			Fabricante fabricanteDelete = new Fabricante();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
