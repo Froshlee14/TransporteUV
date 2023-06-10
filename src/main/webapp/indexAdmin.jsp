@@ -37,6 +37,10 @@
 
 				<div class="field-row-stacked">
 
+					<form action="ServletViajeListaMonitorear" method="get">
+						<input type="submit" value="Monitorear viajes" style="width: 100%">
+					</form>
+
 					<form action="ServletConductorLista" method="get">
 						<input type="submit" value="Administrar conductores" style="width: 100%">
 					</form>
@@ -45,15 +49,15 @@
 						<input type="hidden" name="rol" value="administrador">
 						<input type="submit" value="Administrar autobuses" style="width: 100%">
 					</form>
+					
+					<form action="ServletRutaLista" method="get">
+						<input type="hidden" name="rol" value="administrador">
+						<input type="submit" value="Administrar rutas" style="width: 100%">
+					</form>
 
 					<form action="ServletViajeLista" method="get">
 						<input type="hidden" name="rol" value="administrador">
 						<input type="submit" value="Administrar viajes" style="width: 100%">
-					</form>
-
-					<form action="ServletRutaLista" method="get">
-						<input type="hidden" name="rol" value="administrador">
-						<input type="submit" value="Administrar rutas" style="width: 100%">
 					</form>
 
 				</div>
