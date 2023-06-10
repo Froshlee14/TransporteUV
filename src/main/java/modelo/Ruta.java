@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Ruta implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private int numRuta;
 	private String descripcion;
 	private String destinoInicial;

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class ConductorAutobus implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private int numEmpleado;
 	private int numUnidad;
 	
