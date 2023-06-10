@@ -20,7 +20,9 @@
 		<div class="title-bar">
 			<div class="title-bar-text">conductorAgregar.jsp</div>
 			<div class="title-bar-controls">
-				<button aria-label="Close"></button>
+				<form action="ServletConductorLista">
+					<button aria-label="Close"></button>
+				</form>
 			</div>
 		</div>
 
