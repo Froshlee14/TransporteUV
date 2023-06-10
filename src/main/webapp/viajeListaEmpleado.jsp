@@ -5,18 +5,11 @@
 
 <html>
 
-<head>
-	<title>TransporteUV</title>
-	<link rel="stylesheet" href="https://unpkg.com/98.css">
-
-  	<style>
-    	tr:hover {
-      		background-color: #c3c3c3;
-      		cursor: pointer;
-    	}
-  	</style>
-
-</head>
+	<head>
+		<title>TransporteUV</title>
+		<link rel="stylesheet" href="https://unpkg.com/98.css">
+		<link rel="stylesheet" type="text/css" href="misEstilos.css" />
+	</head>
 
 <body>
 

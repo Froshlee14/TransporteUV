@@ -8,6 +8,7 @@
 	<head>
 		<title>TransporteUV</title>
 		<link rel="stylesheet" href="https://unpkg.com/98.css">
+		<link rel="stylesheet" type="text/css" href="misEstilos.css" />
 	</head>
 	
 	<body>
@@ -20,7 +21,7 @@
         <div class="window" style="width: 300px">
         
           	<div class="title-bar">
-    			<div class="title-bar-text">indexEmplaedo.jsp</div>
+    			<div class="title-bar-text">indexEmpleado.jsp</div>
     			<div class="title-bar-controls">
      				<button aria-label="Close"></button>
    				</div>

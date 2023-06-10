@@ -8,16 +8,7 @@
 <head>
 	<title>TransporteUV</title>
 	<link rel="stylesheet" href="https://unpkg.com/98.css">
-
-  	<style>
-    	tr:hover {
-      		background-color: #c3c3c3;
-      		cursor: pointer;
-    	}
-    	tr.selected {
-      		background-color: #409ed0;
-    	}
-  	</style>
+	<link rel="stylesheet" type="text/css" href="misEstilos.css" />
 
 </head>
 

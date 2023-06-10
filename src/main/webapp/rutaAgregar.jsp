@@ -5,10 +5,11 @@
 
 <html>
 
-<head>
-	<title>TransporteUV</title>
-	<link rel="stylesheet" href="https://unpkg.com/98.css">
-</head>
+	<head>
+		<title>TransporteUV</title>
+		<link rel="stylesheet" href="https://unpkg.com/98.css">
+		<link rel="stylesheet" type="text/css" href="misEstilos.css" />
+	</head>
 
 <body>
 

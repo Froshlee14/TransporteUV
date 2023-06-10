@@ -6,10 +6,10 @@
 	<head>
 		<title>TransporteUV</title>
 		<link rel="stylesheet" href="https://unpkg.com/98.css">
+		<link rel="stylesheet" type="text/css" href="misEstilos.css" />
 	</head>
 	
-	<body>
-
+	<body >
 		
 		
 		<div  class="window" style="width: 250px; margin: 32px; ">
@@ -51,6 +51,7 @@
     		</form>
     		</div>
     	</div>
+
 	</body>
 	
 </html>
