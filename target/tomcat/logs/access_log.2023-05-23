@@ -1,8 +1,0 @@
-0:0:0:0:0:0:0:1 - - [23/May/2023:00:03:05 -0600] "GET /transporteUV HTTP/1.1" 302 - http-bio-8080-exec-1 0
-0:0:0:0:0:0:0:1 - - [23/May/2023:00:03:05 -0600] "GET /transporteUV/ HTTP/1.1" 200 415 http-bio-8080-exec-3 25
-0:0:0:0:0:0:0:1 - - [23/May/2023:00:03:07 -0600] "POST /transporteUV/empleadoIndex.jsp HTTP/1.1" 200 477 http-bio-8080-exec-4 6
-0:0:0:0:0:0:0:1 - - [23/May/2023:00:09:06 -0600] "POST /transporteUV/empleadoIndex.jsp HTTP/1.1" 200 477 http-bio-8080-exec-1 37
-0:0:0:0:0:0:0:1 - - [23/May/2023:00:49:13 -0600] "POST /transporteUV/empleadoIndex.jsp HTTP/1.1" 200 477 http-bio-8080-exec-4 2
-0:0:0:0:0:0:0:1 - - [23/May/2023:00:56:08 -0600] "POST /transporteUV/empleadoIndex.jsp HTTP/1.1" 200 477 http-bio-8080-exec-7 2
-0:0:0:0:0:0:0:1 - - [23/May/2023:00:56:11 -0600] "POST /transporteUV/empleadoIndex.jsp HTTP/1.1" 200 477 http-bio-8080-exec-9 0
-0:0:0:0:0:0:0:1 - - [23/May/2023:00:56:26 -0600] "POST /transporteUV/empleadoIndex.jsp HTTP/1.1" 200 477 http-bio-8080-exec-10 271
